@@ -21,56 +21,54 @@
     </nav>
     
     <main>
-        <h2>만들 기능: Night & Day 모드</h2>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">1. 만들 기능: Night & Day 모드</h2>
         
-        <h3>동작 방식</h3>
-        <ul>
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">1.1 동작 방식</h3>
+        <ul style="margin-left: 40px;">
             <li><code>night</code> 버튼 클릭 → 배경 검은색, 글자 흰색</li>
             <li><code>day</code> 버튼 클릭 → 원래 색상으로 복원</li>
         </ul>
         
-        <h2>사용할 기술</h2>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">2. 사용할 기술</h2>
         
-        <h3>HTML: 버튼 만들기</h3>
-        <pre><code>&lt;input type="button" value="night" onclick="JavaScript코드"&gt;</code></pre>
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.1 HTML: 버튼 만들기</h3>
+        <pre style="background-color: #f8f9fa; padding: 15px; margin-left: 40px;"><code>&lt;input type="button" value="night" onclick="JavaScript코드"&gt;</code></pre>
         
-        <h3>JavaScript: 페이지 변경하기</h3>
-        <pre><code>document.querySelector('body').style.backgroundColor='black';
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.2 JavaScript: 페이지 변경하기</h3>
+        <pre style="background-color: #f8f9fa; padding: 15px; margin-left: 40px;"><code>document.querySelector('body').style.backgroundColor='black';
 document.querySelector('body').style.color='white';</code></pre>
         
-        <h2>핵심 개념 2가지</h2>
-        <ol>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">3. 핵심 개념 2가지</h2>
+        <ol style="margin-left: 40px;">
             <li><strong>사용자 상호작용</strong>: 버튼 클릭 → 반응</li>
             <li><strong>HTML 제어</strong>: 웹페이지 내용을 실시간으로 변경</li>
         </ol>
         
-        <h2>실습 체험</h2>
-        <div style="background-color: #fff3cd; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 5px solid #ffc107;">
-            <h4>Night & Day 버튼 체험해보기</h4>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">4. 실습 체험</h2>
+        <div style="background-color: #fff3cd; padding: 20px; margin: 20px 40px;">
+            <h4 style="margin-top: 0;">Night & Day 버튼 체험해보기</h4>
             <p>아래 버튼을 클릭해서 실제 동작을 확인해보세요:</p>
             
             <div style="text-align: center; margin: 20px 0;">
                 <input type="button" value="night" onclick="
                     document.querySelector('body').style.backgroundColor='black';
                     document.querySelector('body').style.color='white';
-                    this.value = 'day';
                 " style="padding: 10px 20px; font-size: 16px; margin: 5px;">
                 
                 <input type="button" value="day" onclick="
                     document.querySelector('body').style.backgroundColor='white';
                     document.querySelector('body').style.color='black';
-                    document.querySelector('input[value=day]').value = 'night';
                 " style="padding: 10px 20px; font-size: 16px; margin: 5px;">
             </div>
             
-            <p><small>💡 <strong>팁:</strong> 버튼을 클릭하면 페이지 전체의 배경색과 글자색이 바뀝니다. F12로 개발자도구를 열어서 Elements 탭에서 HTML 변화를 관찰해보세요!</small></p>
+            <p><small><strong>팁:</strong> 버튼을 클릭하면 페이지 전체의 배경색과 글자색이 바뀝니다. F12로 개발자도구를 열어서 Elements 탭에서 HTML 변화를 관찰해보세요!</small></p>
         </div>
         
-        <h2>확인 방법</h2>
-        <p>F12(개발자도구) → Elements 탭에서 버튼 클릭 시 HTML 변화 관찰</p>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">5. 확인 방법</h2>
+        <p style="margin-left: 20px;">F12(개발자도구) → Elements 탭에서 버튼 클릭 시 HTML 변화 관찰</p>
         
-        <h2>학습 포인트</h2>
-        <p>이번 강의에서는 JavaScript가 어떻게 HTML과 결합하여 동적인 웹페이지를 만드는지 구체적인 예시를 통해 확인할 수 있습니다. Night & Day 모드 기능은 앞으로 배울 모든 JavaScript 개념들이 실제로 어떻게 활용되는지 보여주는 완성된 예제입니다.</p>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">6. 학습 포인트</h2>
+        <p style="margin-left: 20px;">JavaScript가 HTML과 결합하여 동적인 웹페이지를 만드는 과정을 구체적인 예시를 통해 확인. Night & Day 모드 기능은 앞으로 배울 모든 JavaScript 개념들이 실제로 어떻게 활용되는지 보여주는 완성된 예제.</p>
     </main>
     
     <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">

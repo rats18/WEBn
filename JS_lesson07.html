@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>7강: 변수와 대입 연산자 - 생활코딩 JavaScript</title>
+</head>
+<body>
+    <h1>7강: 변수와 대입 연산자</h1>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>📺 강의 영상:</strong> 
+        <a href="https://youtu.be/absJhWQAS40?si=NzOCLCkYKuxy9zS8" target="_blank">
+            생활코딩 - 변수와 대입 연산자 (새 탭에서 열기)
+        </a>
+    </div>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson06.html">← 이전 강의</a> | 
+        <a href="JS_lesson08.html">다음 강의 →</a>
+    </nav>
+    
+    <main>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">1. 변수란?</h2>
+        <ul style="margin-left: 40px;">
+            <li><strong>바뀔 수 있는 값</strong>을 저장하는 공간</li>
+            <li>영어로 Variable (vs 상수 Constant)</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">2. 기본 사용법</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.1 변수 선언과 대입</h3>
+        <p style="margin-left: 40px;">var x = 1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// x라는 변수에 1을 대입</p>
+        <p style="margin-left: 40px;">var y = 1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// y라는 변수에 1을 대입</p>
+        <p style="margin-left: 40px;">x + y;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 결과: 2</p>
+        
+        <p style="margin-left: 40px;">x = 1000;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// x의 값을 1000으로 변경</p>
+        <p style="margin-left: 40px;">x + y;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 결과: 1001</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.2 대입 연산자 =</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>오른쪽 값을 왼쪽 변수에 대입</strong>하는 연산자</li>
+            <li>1 = 2 → 에러 (상수에는 대입 불가)</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">3. 변수 사용의 효용성</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.1 문제 상황: 반복되는 이름 변경</h3>
+        <p style="margin-left: 40px;">// 비효율적인 방법 - egoing이 여러 곳에 하드코딩</p>
+        <p style="margin-left: 40px;">alert("Hello egoing. Lorem ipsum dolor sit amet, egoing consectetur adipisicing elit. egoing");</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.2 해결책: 변수 활용</h3>
+        <p style="margin-left: 40px;">var name = "egoing";</p>
+        <p style="margin-left: 40px;">alert("Hello " + name + ". Lorem ipsum dolor sit amet, " + name + " consectetur adipisicing elit. " + name);</p>
+        
+        <p style="margin-left: 40px;">// 이름 변경이 필요할 때</p>
+        <p style="margin-left: 40px;">name = "leezche";&nbsp;&nbsp;// 한 곳만 수정하면 모든 곳이 변경됨</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">4. 실습 체험</h2>
+        
+        <p style="margin-left: 40px;">
+            <input type="button" value="이름을 홍길동으로 변경" onclick='var name="홍길동"; alert("안녕 " + name + ". 오늘 " + name + "님은 어떠세요? " + name + "!")'>
+            <input type="button" value="이름을 김철수로 변경" onclick='var name="김철수"; alert("안녕 " + name + ". 오늘 " + name + "님은 어떠세요? " + name + "!")'>
+        </p>
+        
+        <p style="margin-left: 40px;">
+            <input type="button" value="계산 결과 확인" onclick='var x=15; var y=25; alert("계산: " + x + " + " + y + " = " + (x+y))'>
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">5. 핵심 개념</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.1 Variable vs Constant</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>Variable (변수)</strong>: 값이 바뀔 수 있는 것</li>
+            <li><strong>Constant (상수)</strong>: 값이 바뀌지 않는 것 (예: 숫자 1, 2, 3...)</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.2 var 키워드</h3>
+        <p style="margin-left: 40px;">var name = "egoing";&nbsp;&nbsp;// 권장하는 방법</p>
+        <p style="margin-left: 40px;">name = "egoing";&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 가능하지만 var 사용을 권장</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">6. Night & Day 예제에서</h2>
+        <p style="margin-left: 40px;">document.querySelector('body').style.backgroundColor='black';</p>
+        <ul style="margin-left: 40px;">
+            <li>= → 대입 연산자</li>
+            <li>'black' 값이 backgroundColor 변수에 대입됨</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">7. 중요한 마인드셋</h2>
+        <p style="margin-left: 20px;">극단적으로 생각하기: 3개가 아니라 1억개라고 가정. 한 곳만 수정하면 모든 곳이 변경되는 효율성이 변수의 핵심 가치.</p>
+    </main>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson06.html">← 이전 강의</a> | 
+        <a href="JS_lesson08.html">다음 강의 →</a>
+    </nav>
+    
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 7강: 변수와 대입 연산자</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+</body>
+</html>

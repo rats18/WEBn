@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>10강: 제어할 태그 선택하기 - 생활코딩 JavaScript</title>
+</head>
+<body>
+    <h1>10강: 제어할 태그 선택하기</h1>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>📺 강의 영상:</strong> 
+        <a href="https://youtu.be/H2eMtredsK4?si=-dmsKT0a37rvG979" target="_blank">
+            생활코딩 - 제어할 태그 선택하기 (새 탭에서 열기)
+        </a>
+    </div>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson09.html">← 이전 강의</a> | 
+        <a href="JS_lesson11.html">다음 강의 →</a>
+    </nav>
+    
+    <main>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">1. 목표</h2>
+        <ul style="margin-left: 40px;">
+            <li>JavaScript로 HTML 태그를 선택하는 방법 학습</li>
+            <li>Night & Day 버튼 기능 완전 구현</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">2. HTML 버튼 기본 구조</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.1 버튼 생성</h3>
+        <p style="margin-left: 40px;">&lt;input type="button" value="night" onclick="JavaScript코드"&gt;</p>
+        <p style="margin-left: 40px;">&lt;input type="button" value="day" onclick="JavaScript코드"&gt;</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">3. JavaScript로 태그 선택하기</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.1 document.querySelector() 사용법</h3>
+        <p style="margin-left: 40px;">document.querySelector('body')</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.2 선택자 종류</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>태그 선택</strong>: document.querySelector('body')</li>
+            <li><strong>ID 선택</strong>: document.querySelector('#target')</li>
+            <li><strong>클래스 선택</strong>: document.querySelector('.myclass')</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">4. 스타일 속성 변경하기</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.1 배경색 변경</h3>
+        <p style="margin-left: 40px;">document.querySelector('body').style.backgroundColor = 'black';</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.2 글자색 변경</h3>
+        <p style="margin-left: 40px;">document.querySelector('body').style.color = 'white';</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">5. CSS vs JavaScript 속성명</h2>
+        
+        <p style="margin-left: 40px;">CSS: background-color → JavaScript: backgroundColor</p>
+        <p style="margin-left: 40px;">CSS: color → JavaScript: color</p>
+        <p style="margin-left: 40px;"><strong>중요</strong>: CSS의 하이픈(-)은 JavaScript에서 카멜케이스로 변환</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">6. 실습 체험</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">6.1 완성된 Night & Day 기능</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="night" onclick="
+                document.querySelector('body').style.backgroundColor='black';
+                document.querySelector('body').style.color='white';
+            ">
+            
+            <input type="button" value="day" onclick="
+                document.querySelector('body').style.backgroundColor='white';
+                document.querySelector('body').style.color='black';
+            ">
+        </p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">6.2 선택자 체험</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="이 버튼을 파란색으로" onclick="
+                this.style.color='blue';
+            ">
+            
+            <input type="button" value="이 버튼을 굵게" onclick="
+                this.style.fontWeight='bold';
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">7. 핵심 개념</h2>
+        <ol style="margin-left: 40px;">
+            <li><strong>태그 선택</strong>: document.querySelector()로 원하는 HTML 요소 찾기</li>
+            <li><strong>스타일 변경</strong>: .style.속성명 = '값'으로 CSS 동적 적용</li>
+            <li><strong>이벤트 연결</strong>: onclick으로 사용자 상호작용 구현</li>
+        </ol>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">8. 웹브라우저 제어 원리</h2>
+        <ol style="margin-left: 40px;">
+            <li>JavaScript가 HTML 태그를 <strong>선택</strong></li>
+            <li>선택한 태그의 속성을 <strong>변경</strong></li>
+            <li>웹브라우저가 변경사항을 <strong>즉시 반영</strong></li>
+        </ol>
+        
+    </main>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson09.html">← 이전 강의</a> | 
+        <a href="JS_lesson11.html">다음 강의 →</a>
+    </nav>
+    
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 10강: 제어할 태그 선택하기</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>9강: CSS 기초 - 생활코딩 JavaScript</title>
+</head>
+<body>
+    <h1>9강: CSS 기초</h1>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>📺 강의 영상:</strong> 
+        <a href="https://youtu.be/HQgNj50Xt9g?si=p7VXw194pSp4Yi7v" target="_blank">
+            생활코딩 - CSS 기초 (선택 사항) (새 탭에서 열기)
+        </a>
+    </div>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson08.html">← 이전 강의</a> | 
+        <a href="JS_lesson10.html">다음 강의 →</a>
+    </nav>
+    
+    <main>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">1. CSS란?</h2>
+        <ul style="margin-left: 40px;">
+            <li>HTML, JavaScript와 완전히 다른 컴퓨터 언어</li>
+            <li>역할: <strong>디자인과 꾸미기</strong></li>
+            <li>HTML의 style 속성 안에 CSS 코드가 들어감</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">2. style 속성 사용법</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.1 기본 구조</h3>
+        <p style="margin-left: 40px;">&lt;h1 style="color:powderblue; background-color:coral;"&gt;제목&lt;/h1&gt;</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.2 CSS 속성 예제</h3>
+        <p style="margin-left: 40px;">color: powderblue;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* 글자색 */</p>
+        <p style="margin-left: 40px;">background-color: coral;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* 배경색 */</p>
+        <p style="margin-left: 40px;">font-weight: bold;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* 글자 굵게 */</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">3. 실습 체험</h2>
+        
+        <p style="margin-left: 40px;">
+            <input type="button" value="이 버튼 글자를 빨간색으로" onclick="
+                this.style.color='red';
+            ">
+            
+            <input type="button" value="이 버튼 배경을 노란색으로" onclick="
+                this.style.backgroundColor='yellow';
+            ">
+        </p>
+        
+        <p style="margin-left: 40px;">
+            <input type="button" value="이 버튼을 굵게" onclick="
+                this.style.fontWeight='bold';
+            ">
+            
+            <input type="button" value="이 버튼 크게" onclick="
+                this.style.fontSize='20px';
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">4. CSS 속성 찾는 방법</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.1 검색 키워드</h3>
+        <ul style="margin-left: 40px;">
+            <li>css background color property</li>
+            <li>css font bold property</li>
+            <li>원하는 효과 + css + property</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.2 문법 구조</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>속성명: 값;</strong> 형태</li>
+            <li>세미콜론(;)으로 구분</li>
+            <li>여러 속성을 나열 가능</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">5. HTML vs CSS 역할 분담</h2>
+        
+        <ul style="margin-left: 40px;">
+            <li><strong>HTML</strong>: 구조와 내용</li>
+            <li><strong>CSS</strong>: 디자인과 스타일</li>
+            <li><strong>style 속성</strong>: HTML과 CSS를 연결하는 다리</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">6. JavaScript에서 CSS 속성명</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">6.1 CSS vs JavaScript 차이점</h3>
+        <p style="margin-left: 40px;">CSS: background-color → JavaScript: backgroundColor</p>
+        <p style="margin-left: 40px;">CSS: font-weight → JavaScript: fontWeight</p>
+        <p style="margin-left: 40px;">CSS의 하이픈(-)은 JavaScript에서 카멜케이스로 변환</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">7. 핵심 기억사항</h2>
+        <ol style="margin-left: 40px;">
+            <li><strong>style 속성</strong>: HTML 태그에 CSS 적용하는 방법</li>
+            <li><strong>CSS 문법</strong>: 속성명:값; 형태</li>
+            <li><strong>검색 활용</strong>: 원하는 효과를 찾아서 적용</li>
+            <li><strong>JavaScript 사용시</strong>: 하이픈을 카멜케이스로 변경</li>
+        </ol>
+        
+    </main>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson08.html">← 이전 강의</a> | 
+        <a href="JS_lesson10.html">다음 강의 →</a>
+    </nav>
+    
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 9강: CSS 기초</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+</body>
+</html>

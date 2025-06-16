@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>5강: HTML과 JavaScript의 만남 - 콘솔 - 생활코딩 JavaScript</title>
+</head>
+<body>
+    <h1>5강: HTML과 JavaScript의 만남 - 콘솔</h1>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>📺 강의 영상:</strong> 
+        <a href="https://youtu.be/-VKIqaEdDVU?si=03inj26LoiyBI8ET" target="_blank">
+            생활코딩 - HTML과 JavaScript의 만남3 (console) (새 탭에서 열기)
+        </a>
+    </div>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson04.html">← 이전 강의</a> | 
+        <a href="JS_lesson06.html">다음 강의 →</a>
+    </nav>
+    
+    <main>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">1. 콘솔이란?</h2>
+        <ul style="margin-left: 40px;">
+            <li>파일 없이 JavaScript 코드를 즉석에서 실행할 수 있는 도구</li>
+            <li>계산기처럼 가벼운 작업에 활용</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">2. 콘솔 사용 방법</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.1 열기</h3>
+        <ol style="margin-left: 40px;">
+            <li>웹페이지에서 <strong>오른쪽 클릭 → 검사</strong></li>
+            <li><strong>Console</strong> 탭 선택</li>
+            <li>깜빡이는 커서에서 JavaScript 코드 입력</li>
+        </ol>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.2 단축키</h3>
+        <p style="margin-left: 40px;"><strong>ESC</strong>: Elements 탭에서 하단에 Console 창 토글</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">3. 실용적 활용 예제</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.1 문자 개수 세기</h3>
+        <p style="margin-left: 40px;">"복사한 긴 텍스트".length</p>
+        <p style="margin-left: 40px;">→ 문자열의 글자 수 출력</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.2 경고창으로 결과 보기</h3>
+        <p style="margin-left: 40px;">alert("복사한 긴 텍스트".length);</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.3 웹페이지 제어</h3>
+        <ul style="margin-left: 40px;">
+            <li>콘솔에서 실행하는 JavaScript는 <strong>현재 보고 있는 웹페이지</strong>를 대상으로 동작</li>
+            <li>이미 만들어진 웹사이트를 나의 필요에 따라 제어 가능</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">4. 콘솔 실습 가이드</h2>
+        <p style="margin-left: 20px;">지금 이 페이지에서 콘솔을 열고 다음 명령들을 실제로 입력해보세요:</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.1 기본 계산</h3>
+        <p style="margin-left: 40px;">1+1</p>
+        <p style="margin-left: 40px;">10*5</p>
+        <p style="margin-left: 40px;">100/4</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.2 문자열 조작</h3>
+        <p style="margin-left: 40px;">"안녕하세요".length</p>
+        <p style="margin-left: 40px;">"JavaScript".toUpperCase()</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.3 이 페이지 제어하기</h3>
+        <p style="margin-left: 40px;">document.querySelector('h1').style.color='red'</p>
+        <p style="margin-left: 40px;">→ 이 페이지의 제목이 빨간색으로 변경됩니다!</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.4 경고창 띄우기</h3>
+        <p style="margin-left: 40px;">alert('콘솔에서 안녕!')</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">5. 실무 활용 사례</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.1 랜덤 추첨</h3>
+        <p style="margin-left: 40px;">댓글에서 랜덤하게 당첨자 선정</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.2 데이터 처리</h3>
+        <p style="margin-left: 40px;">웹페이지의 정보를 즉석에서 가공</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.3 간단한 계산</h3>
+        <p style="margin-left: 40px;">복잡한 수식을 빠르게 처리</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">6. 콘솔 사용 요령</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">6.1 콘솔 열기 단계별 안내</h3>
+        <ol style="margin-left: 40px;">
+            <li>이 페이지에서 <strong>마우스 오른쪽 클릭</strong></li>
+            <li><strong>"검사"</strong> 또는 <strong>"개발자 도구"</strong> 클릭</li>
+            <li>개발자 도구 창이 열리면 <strong>"Console"</strong> 탭 클릭</li>
+            <li>커서가 깜빡이는 곳에 JavaScript 코드 입력</li>
+            <li><strong>Enter 키</strong>로 실행</li>
+        </ol>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">6.2 주의사항</h3>
+        <ul style="margin-left: 40px;">
+            <li>오타 주의: JavaScript는 대소문자를 구분함</li>
+            <li>세미콜론(;)은 생략 가능하지만 써주는 것이 좋음</li>
+            <li>에러가 나면 빨간 글씨로 표시됨</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">7. 핵심 개념</h2>
+        <ul style="margin-left: 40px;">
+            <li><strong>즉석 실행</strong>: 파일 생성 없이 코드 테스트</li>
+            <li><strong>현재 페이지 대상</strong>: 보고 있는 웹페이지에서 동작</li>
+            <li><strong>실생활 문제 해결</strong>: 거대한 개발이 아닌 일상의 작은 문제 해결</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">8. 실습 미션</h2>
+        <p style="margin-left: 20px;">콘솔을 열고 다음 미션을 수행해보세요:</p>
+        <ol style="margin-left: 40px;">
+            <li>자신의 이름 글자 수 세기</li>
+            <li>간단한 수학 계산하기</li>
+            <li>이 페이지의 제목 색깔 바꾸기</li>
+            <li>경고창으로 메시지 출력하기</li>
+        </ol>
+        
+        <p style="margin-left: 20px;"><strong>팁:</strong> 콘솔은 JavaScript 학습의 든든한 동반자입니다. 궁금한 것이 있으면 언제든 콘솔에서 실험해보세요!</p>
+    </main>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson04.html">← 이전 강의</a> | 
+        <a href="JS_lesson06.html">다음 강의 →</a>
+    </nav>
+    
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 5강: HTML과 JavaScript의 만남 - 콘솔</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+</body>
+</html>

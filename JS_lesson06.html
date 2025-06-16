@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>6강: 데이터타입 - 문자열과 숫자 - 생활코딩 JavaScript</title>
+</head>
+<body>
+    <h1>6강: 데이터타입 - 문자열과 숫자</h1>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>📺 강의 영상:</strong> 
+        <a href="https://youtu.be/P8C8VNiM33A?si=bize5cWSYROJiQM4" target="_blank">
+            생활코딩 - 데이터 타입 - 문자열과 숫자 (새 탭에서 열기)
+        </a>
+    </div>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson05.html">← 이전 강의</a> | 
+        <a href="JS_lesson07.html">다음 강의 →</a>
+    </nav>
+    
+    <main>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">1. 데이터타입이란?</h2>
+        <ul style="margin-left: 40px;">
+            <li>컴퓨터가 데이터를 종류별로 분류하는 방법</li>
+            <li>JavaScript에는 <strong>6개의 기본 데이터타입 + 객체</strong>가 존재</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">2. 숫자(Number) 데이터타입</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.1 표현 방법</h3>
+        <p style="margin-left: 40px;">1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 숫자 1</p>
+        <p style="margin-left: 40px;">1+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 계산 결과: 2</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.2 계산 방법</h3>
+        <p style="margin-left: 40px;">2-1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 빼기: 1</p>
+        <p style="margin-left: 40px;">2*4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 곱하기: 8</p>
+        <p style="margin-left: 40px;">6/2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 나누기: 3</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">3. 문자열(String) 데이터타입</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.1 표현 방법</h3>
+        <p style="margin-left: 40px;">"hello world"&nbsp;&nbsp;&nbsp;&nbsp;// 큰따옴표</p>
+        <p style="margin-left: 40px;">'hello world'&nbsp;&nbsp;&nbsp;&nbsp;// 작은따옴표</p>
+        <p style="margin-left: 40px;"><strong>규칙</strong>: 큰따옴표로 시작하면 큰따옴표로 끝내기</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.2 주요 기능들</h3>
+        <p style="margin-left: 40px;">"hello world".length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 글자 수: 11</p>
+        <p style="margin-left: 40px;">"hello world".toUpperCase()&nbsp;&nbsp;// 대문자 변환: "HELLO WORLD"</p>
+        <p style="margin-left: 40px;">"hello world".indexOf('o')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 문자 위치 찾기: 4</p>
+        <p style="margin-left: 40px;">"hello world".indexOf('world')&nbsp;&nbsp;// 문자열 위치: 6</p>
+        <p style="margin-left: 40px;">" hello ".trim()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 공백 제거: "hello"</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">4. 중요한 차이점</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.1 숫자 vs 문자열 연산</h3>
+        <p style="margin-left: 40px;">1+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 숫자: 2</p>
+        <p style="margin-left: 40px;">"1"+"1"&nbsp;&nbsp;&nbsp;&nbsp;// 문자열: "11"</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">5. 실습 체험</h2>
+        <p style="margin-left: 20px;">숫자와 문자열의 차이를 직접 확인해보세요:</p>
+        
+        <p style="margin-left: 40px;">
+            <input type="button" value="1+1 (숫자 계산)" onclick="alert(1+1)">
+            <input type="button" value='"1"+"1" (문자열 연결)' onclick='alert("1"+"1")'>
+        </p>
+        
+        <p style="margin-left: 40px;">
+            <input type="button" value="JavaScript 글자 수 세기" onclick='alert("JavaScript".length + "개")'>
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">6. Night & Day 예제에서</h2>
+        <p style="margin-left: 40px;">document.querySelector('body').style.backgroundColor='black';</p>
+        <p style="margin-left: 40px;">'body', 'black' → 따옴표로 감싸진 <strong>문자열</strong></p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">7. 핵심 기억사항</h2>
+        <ol style="margin-left: 40px;">
+            <li><strong>숫자</strong>: 따옴표 없이 쓰고 계산 가능</li>
+            <li><strong>문자열</strong>: 따옴표로 감싸고 텍스트 처리 가능</li>
+            <li><strong>연산 차이</strong>: 1+1=2, "1"+"1"="11"</li>
+            <li><strong>문자열 기능</strong>: length, toUpperCase, indexOf, trim 등</li>
+        </ol>
+    </main>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson05.html">← 이전 강의</a> | 
+        <a href="JS_lesson07.html">다음 강의 →</a>
+    </nav>
+    
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 6강: 데이터타입 - 문자열과 숫자</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+</body>
+</html>

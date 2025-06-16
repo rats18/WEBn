@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>11강: Boolean (불린) - 생활코딩 JavaScript</title>
+</head>
+<body>
+    <h1>11강: Boolean (불린)</h1>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>📺 강의 영상:</strong> 
+        <a href="https://youtu.be/GCtWMXc-rtw?si=zgVhQWJL6b9mm2Nh" target="_blank">
+            생활코딩 - Boolean (불린) (새 탭에서 열기)
+        </a>
+    </div>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson10.html">← 이전 강의</a> | 
+        <a href="JS_lesson12.html">다음 강의 →</a>
+    </nav>
+    
+    <main>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">1. Boolean이란?</h2>
+        <ul style="margin-left: 40px;">
+            <li>영어로 Boolean (불린)</li>
+            <li><strong>단 2개의 값</strong>만 존재: true, false</li>
+            <li>참과 거짓을 나타내는 데이터타입</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">2. Boolean 값 사용법</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.1 기본 값</h3>
+        <p style="margin-left: 40px;">true&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 참</p>
+        <p style="margin-left: 40px;">false&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 거짓</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.2 대소문자 주의</h3>
+        <p style="margin-left: 40px;">true&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 올바름</p>
+        <p style="margin-left: 40px;">True&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 틀림</p>
+        <p style="margin-left: 40px;">TRUE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 틀림</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">3. 다른 데이터타입과 비교</h2>
+        
+        <ul style="margin-left: 40px;">
+            <li><strong>Number</strong>: 1, 2, 3, 100, 1000... (무한히 많음)</li>
+            <li><strong>String</strong>: "hello", "world", "JavaScript"... (엄청나게 많음)</li>
+            <li><strong>Boolean</strong>: true, false (단 2개뿐)</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">4. 실습 체험</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.1 Boolean vs 문자열 차이</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="true (Boolean)" onclick="
+                alert('Boolean 값: ' + true);
+            ">
+            
+            <input type="button" value="'true' (문자열)" onclick="
+                alert('문자열 값: ' + 'true');
+            ">
+        </p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.2 Boolean 계산</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="true를 3번 출력" onclick="
+                alert(true + ' ' + true + ' ' + true);
+            ">
+            
+            <input type="button" value="이 버튼을 빨간색으로" onclick="
+                this.style.color='red';
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">5. Boolean의 특징</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.1 단순함의 힘</h3>
+        <ul style="margin-left: 40px;">
+            <li>값이 <strong>단 2개</strong>뿐이라 매우 단순</li>
+            <li>컴퓨터가 <strong>빠르게 처리</strong> 가능</li>
+            <li>예/아니오, 켜짐/꺼짐 같은 <strong>이분법적 상황</strong>에 적합</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.2 실생활 예시</h3>
+        <ul style="margin-left: 40px;">
+            <li>전등 스위치: 켜짐(true) / 꺼짐(false)</li>
+            <li>로그인 상태: 로그인됨(true) / 로그아웃됨(false)</li>
+            <li>Night 모드: 어두움(true) / 밝음(false)</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">6. Boolean 활용 미리보기</h2>
+        
+        <p style="margin-left: 20px;">Boolean은 프로그램이 <strong>결정을 내리는데</strong> 사용됩니다:</p>
+        <ul style="margin-left: 40px;">
+            <li>현재 상태가 true라면 → 이런 동작</li>
+            <li>현재 상태가 false라면 → 저런 동작</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">7. 핵심 기억사항</h2>
+        <ol style="margin-left: 40px;">
+            <li><strong>2개 값만</strong>: true와 false</li>
+            <li><strong>대소문자 주의</strong>: 반드시 소문자로</li>
+            <li><strong>따옴표 없음</strong>: true (Boolean) vs 'true' (문자열)</li>
+            <li><strong>단순함의 힘</strong>: 복잡한 결정을 단순하게</li>
+        </ol>
+        
+    </main>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson10.html">← 이전 강의</a> | 
+        <a href="JS_lesson12.html">다음 강의 →</a>
+    </nav>
+    
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 11강: Boolean (불린)</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+</body>
+</html>

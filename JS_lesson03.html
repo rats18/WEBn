@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>3강: HTML과 JavaScript의 만남 - script 태그 - 생활코딩 JavaScript</title>
+</head>
+<body>
+    <h1>3강: HTML과 JavaScript의 만남 - script 태그</h1>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>📺 강의 영상:</strong> 
+        <a href="https://youtu.be/Ru5zGHkOgic?si=ZqakmdQFvtCrrjyr" target="_blank">
+            생활코딩 - HTML과 JavaScript의 만남1 (script 태그) (새 탭에서 열기)
+        </a>
+    </div>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson02.html">← 이전 강의</a> | 
+        <a href="JS_lesson04.html">다음 강의 →</a>
+    </nav>
+    
+    <main>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">1. 이번 강의에서 배울 것</h2>
+        <ul style="margin-left: 40px;">
+            <li>HTML 문서에 JavaScript 코드 넣는 방법</li>
+            <li><code>&lt;script&gt;</code> 태그 사용법</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">2. JavaScript 삽입 방법</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.1 기본 구조</h3>
+        <pre style="background-color: #f8f9fa; padding: 15px; margin-left: 40px;"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;ex1&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;script&gt;
+        JavaScript 코드가 여기 들어감
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.2 핵심 포인트</h3>
+        <ul style="margin-left: 40px;">
+            <li><code>&lt;script&gt;</code> 태그 안에 JavaScript 코드 작성</li>
+            <li>웹브라우저가 <code>&lt;script&gt;</code> 태그 안의 코드를 JavaScript로 해석</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">3. 실습 예제</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.1 텍스트 출력</h3>
+        <pre style="background-color: #f8f9fa; padding: 15px; margin-left: 40px;"><code>document.write('hello world');</code></pre>
+        <p style="margin-left: 40px;">→ 화면에 "hello world" 출력</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.2 계산 기능</h3>
+        <pre style="background-color: #f8f9fa; padding: 15px; margin-left: 40px;"><code>document.write(1+1);</code></pre>
+        <p style="margin-left: 40px;">→ 화면에 "2" 출력</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">4. HTML vs JavaScript 차이점</h2>
+        
+        <table style="margin-left: 40px; border-collapse: collapse; width: 80%;">
+            <tr style="background-color: #f8f9fa;">
+                <th style="border: 1px solid #ddd; padding: 8px;">구분</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">HTML</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">JavaScript</th>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">성격</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">정적</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">동적</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">계산</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">1+1 → 문자 그대로 "1+1"</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">1+1 → 계산 결과 "2"</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">기능</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">내용 표시만</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">계산, 처리 가능</td>
+            </tr>
+        </table>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">5. 실습 체험</h2>
+        <div style="background-color: #fff3cd; padding: 20px; margin: 20px 40px;">
+            <h4 style="margin-top: 0;">JavaScript 실행해보기</h4>
+            <p>아래는 실제 JavaScript 코드가 실행되는 모습입니다:</p>
+            
+            <div style="background-color: white; padding: 15px; border: 1px solid #ddd; margin: 10px 0;">
+                <strong>실행 결과:</strong><br>
+                <script>
+                    document.write('hello world<br>');
+                    document.write('1+1의 계산 결과: ' + (1+1));
+                </script>
+            </div>
+            
+            <p><small><strong>설명:</strong> 위 결과는 script 태그 안의 JavaScript 코드가 실제로 실행되어 나타난 것입니다. HTML은 단순히 글자를 표시하지만, JavaScript는 계산까지 처리합니다.</small></p>
+        </div>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">6. 핵심 기억사항</h2>
+        <ol style="margin-left: 40px;">
+            <li><strong>&lt;script&gt; 태그</strong>: JavaScript 코드임을 브라우저에 알려줌</li>
+            <li><strong>document.write()</strong>: 웹페이지에 글씨 출력하는 명령어</li>
+            <li><strong>동적 처리</strong>: JavaScript는 계산기처럼 동작 가능</li>
+        </ol>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">7. 중요한 마인드셋</h2>
+        <p style="margin-left: 20px;">문법 세부사항보다는 전체적인 동작 원리 이해가 중요. JavaScript가 HTML과 어떻게 함께 동작하는지 감각적으로 파악하기.</p>
+    </main>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson02.html">← 이전 강의</a> | 
+        <a href="JS_lesson04.html">다음 강의 →</a>
+    </nav>
+    
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 3강: HTML과 JavaScript의 만남 - script 태그</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+</body>
+</html>

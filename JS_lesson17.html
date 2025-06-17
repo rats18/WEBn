@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>17강: 함수의 활용 - 생활코딩 JavaScript</title>
+</head>
+<body>
+    <h1>17강: 함수의 활용</h1>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>📺 강의 영상:</strong> 
+        <a href="https://youtu.be/Gt2iGEEKXww?si=38NAXSX0iEEcWOXM" target="_blank">
+            생활코딩 - 함수의 활용 (새 탭에서 열기)
+        </a>
+    </div>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson16.html">← 이전 강의</a> | 
+        <a href="JS_lesson18.html">다음 강의 →</a>
+    </nav>
+    
+    <main>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">1. 목표: 리팩토링을 통한 코드 효율화</h2>
+        <ul style="margin-left: 40px;">
+            <li><strong>리팩토링</strong>: 동작은 같지만 코드를 효율적으로 개선</li>
+            <li><strong>함수</strong>: 리팩토링의 핵심 도구</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">2. 함수 구현 과정</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.1 함수 정의</h3>
+        <p style="margin-left: 40px;">function nightDayHandler(self) {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;var target = document.querySelector('body');</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;if(self.value === 'night') {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target.style.backgroundColor = 'black';</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target.style.color = 'white';</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.value = 'day';</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;} else {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target.style.backgroundColor = 'white';</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target.style.color = 'black';</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.value = 'night';</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        <p style="margin-left: 40px;">}</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.2 함수 호출</h3>
+        <p style="margin-left: 40px;">&lt;input type="button" value="night" onclick="nightDayHandler(this)"&gt;</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">3. this와 매개변수의 관계</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.1 문제 상황</h3>
+        <p style="margin-left: 40px;">// 독립된 함수에서 this는 전역객체(window)를 가리킴</p>
+        <p style="margin-left: 40px;">function nightDayHandler() {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;// 여기서 this는 input 버튼이 아님!</p>
+        <p style="margin-left: 40px;">}</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.2 해결책: 매개변수 활용</h3>
+        <p style="margin-left: 40px;">function nightDayHandler(self) {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;// self = this 값을 매개변수로 전달받음</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;if(self.value === 'night') {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// self를 통해 input 버튼 제어</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        <p style="margin-left: 40px;">}</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.3 호출 시 this 전달</h3>
+        <p style="margin-left: 40px;">&lt;input onclick="nightDayHandler(this)"&gt;</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">4. 실습 체험</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.1 완성된 함수 기반 Night & Day</h3>
+        
+        <script>
+        function nightDayHandler(self) {
+            var target = document.querySelector('body');
+            if(self.value === 'night') {
+                target.style.backgroundColor = 'black';
+                target.style.color = 'white';
+                self.value = 'day';
+            } else {
+                target.style.backgroundColor = 'white';
+                target.style.color = 'black';
+                self.value = 'night';
+            }
+        }
+        </script>
+        
+        <p style="margin-left: 40px;">
+            <input type="button" value="night" onclick="nightDayHandler(this)">
+        </p>
+        
+        <p style="margin-left: 40px;"><strong>버튼을 클릭해보세요!</strong> 이제 함수를 사용해서 깔끔하게 정리된 코드로 동작합니다.</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.2 매개변수 전달 체험</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="이 버튼 꾸미기" onclick="
+                function decorateButton(element) {
+                    element.style.backgroundColor = 'purple';
+                    element.style.color = 'white';
+                    element.style.borderRadius = '10px';
+                }
+                decorateButton(this);
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">5. 함수 사용의 효과</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.1 코드 중복 제거</h3>
+        <p style="margin-left: 40px;">// 함수 사용 전: 중복 코드</p>
+        <p style="margin-left: 40px;">&lt;input onclick="복잡한 JavaScript 코드"&gt;</p>
+        <p style="margin-left: 40px;">&lt;input onclick="복잡한 JavaScript 코드"&gt;</p>
+        
+        <p style="margin-left: 40px;">// 함수 사용 후: 간결한 호출</p>
+        <p style="margin-left: 40px;">&lt;input onclick="nightDayHandler(this)"&gt;</p>
+        <p style="margin-left: 40px;">&lt;input onclick="nightDayHandler(this)"&gt;</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.2 유지보수성 향상</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>한 곳만 수정</strong>: 함수 내용 변경 시 모든 사용처에 적용</li>
+            <li><strong>1억개 버튼</strong>: 동일한 코드로 모두 관리 가능</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.3 가독성 개선</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>의미 명확화</strong>: nightDayHandler라는 이름으로 기능 파악</li>
+            <li><strong>코드 간소화</strong>: 복잡한 로직을 간단한 호출로 대체</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">6. 매개변수 전달 패턴</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">6.1 이벤트 객체 전달</h3>
+        <p style="margin-left: 40px;">// this를 매개변수로 전달</p>
+        <p style="margin-left: 40px;">onclick="nightDayHandler(this)"</p>
+        
+        <p style="margin-left: 40px;">// 함수에서 매개변수로 받기</p>
+        <p style="margin-left: 40px;">function nightDayHandler(self) {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;// self는 클릭된 input 요소</p>
+        <p style="margin-left: 40px;">}</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">7. 리팩토링의 핵심 가치</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">7.1 확장성</h3>
+        <ul style="margin-left: 40px;">
+            <li>버튼 추가 시 단순 복사만으로 기능 구현</li>
+            <li>새로운 기능 추가 시 함수만 수정</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">7.2 안정성</h3>
+        <ul style="margin-left: 40px;">
+            <li>모든 버튼이 동일한 로직으로 동작</li>
+            <li>실수로 인한 불일치 방지</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">7.3 효율성</h3>
+        <ul style="margin-left: 40px;">
+            <li>코드 양 감소</li>
+            <li>네트워크 전송 비용 절약</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">8. 비교: 함수 사용 전 vs 후</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">8.1 함수 사용 전 (13강)</h3>
+        <p style="margin-left: 40px;">onclick="if(this.value === 'night') { 긴 코드... } else { 긴 코드... }"</p>
+        <ul style="margin-left: 40px;">
+            <li>onclick 속성이 매우 길어짐</li>
+            <li>중복 코드 반복</li>
+            <li>수정 시 모든 곳을 찾아서 변경</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">8.2 함수 사용 후 (17강)</h3>
+        <p style="margin-left: 40px;">onclick="nightDayHandler(this)"</p>
+        <ul style="margin-left: 40px;">
+            <li>onclick 속성이 간결함</li>
+            <li>함수 한 곳에서 모든 로직 관리</li>
+            <li>수정 시 함수만 변경하면 모든 곳에 적용</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">9. 함수의 본질적 가치</h2>
+        <p style="margin-left: 20px;"><strong>"복잡한 코드를 의미있는 이름으로 포장하여, 재사용 가능하고 관리하기 쉬운 단위로 만드는 것"</strong></p>
+        
+        <p style="margin-left: 40px;">함수를 통해 코드가 더욱 체계적이고 효율적으로 관리될 수 있습니다!</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">10. 리팩토링 단계 완성</h2>
+        <p style="margin-left: 20px;">14강에서 리팩토링의 필요성을 인식하고, 15강에서 중복 제거 기법을 학습하고, 16강에서 함수 기본 문법을 익힌 후, 17강에서 실제 프로젝트에 함수를 적용하여 리팩토링 단계를 완전히 마무리했습니다.</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">11. 핵심 기억사항</h2>
+        <ol style="margin-left: 40px;">
+            <li><strong>매개변수</strong>: this를 self로 전달받아 함수 내에서 활용</li>
+            <li><strong>함수명</strong>: nightDayHandler처럼 기능을 명확히 표현</li>
+            <li><strong>코드 분리</strong>: HTML에서 복잡한 로직을 함수로 분리</li>
+            <li><strong>재사용성</strong>: 한 번 정의한 함수를 여러 곳에서 호출</li>
+        </ol>
+    </main>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson16.html">← 이전 강의</a> | 
+        <a href="JS_lesson18.html">다음 강의 →</a>
+    </nav>
+    
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 17강: 함수의 활용</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+</body>
+</html>

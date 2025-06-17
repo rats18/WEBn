@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>14강: 리팩토링 소개 - 생활코딩 JavaScript</title>
+</head>
+<body>
+    <h1>14강: 리팩토링 소개</h1>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>📺 강의 영상:</strong> 
+        <a href="https://youtu.be/UT2oYysmZjE?si=qjS6B0Vt_TBMJOcx" target="_blank">
+            생활코딩 - 리팩토링 소개 (새 탭에서 열기)
+        </a>
+    </div>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson13.html">← 이전 강의</a> | 
+        <a href="JS_lesson15.html">다음 강의 →</a>
+    </nav>
+    
+    <main>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">1. 리팩토링이란?</h2>
+        <ul style="margin-left: 40px;">
+            <li><strong>Re-factory</strong>: 공장으로 다시 보내서 개선</li>
+            <li><strong>동작은 그대로</strong> 두고 <strong>코드를 효율적</strong>으로 개선</li>
+            <li>가독성 향상, 유지보수 편의, 중복 제거</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">2. 현재 코드의 문제점</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.1 중복 코드</h3>
+        <p style="margin-left: 40px;">Night & Day 토글 기능에서 document.querySelector('body')가 여러 번 반복됨</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.2 긴 onclick 속성</h3>
+        <p style="margin-left: 40px;">onclick 안에 모든 코드가 들어가서 읽기 어려움</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.3 유지보수의 어려움</h3>
+        <p style="margin-left: 40px;">색상을 변경하려면 여러 곳을 일일이 찾아서 수정해야 함</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">3. 극단적 상황 가정</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.1 버튼이 1억개라면?</h3>
+        <ul style="margin-left: 40px;">
+            <li>배경색을 black에서 navy로 변경할 때</li>
+            <li>1억개의 onclick 코드를 모두 수정해야 함</li>
+            <li>실수 위험: 일부는 변경되고 일부는 그대로</li>
+            <li>웹페이지 용량 증가: 중복 코드로 인한 크기 폭증</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.2 현실적 문제</h3>
+        <ul style="margin-left: 40px;">
+            <li>시간이 많이 걸림</li>
+            <li>자주 반복됨</li>
+            <li>실수가 자주 발생</li>
+            <li>불행과 절망감 증가</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">4. 리팩토링의 목표</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.1 중복 제거</h3>
+        <p style="margin-left: 40px;">같은 코드가 여러 번 나오는 것을 하나로 통합</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.2 코드 정리정돈</h3>
+        <p style="margin-left: 40px;">복잡한 코드를 간단하고 읽기 쉽게 만들기</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.3 유지보수성 향상</h3>
+        <p style="margin-left: 40px;">한 곳만 수정하면 모든 곳에 적용되도록</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">5. 리팩토링의 핵심 원칙</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.1 동작 보존</h3>
+        <p style="margin-left: 40px;">기능은 정확히 같게 유지하면서 코드만 개선</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.2 점진적 개선</h3>
+        <p style="margin-left: 40px;">한 번에 모든 것을 바꾸지 말고 단계적으로 진행</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">6. 코딩 잘하는 방법의 비밀</h2>
+        
+        <p style="margin-left: 20px;"><strong>"중복을 끝까지 쫓아가서 다 없애 버리세요"</strong></p>
+        
+        <p style="margin-left: 40px;">대부분의 프로그래밍 기술이 중복 제거에서 출발함:</p>
+        <ul style="margin-left: 40px;">
+            <li>변수: 중복되는 값을 하나로</li>
+            <li>조건문: 중복되는 코드 흐름을 정리</li>
+            <li>앞으로 배울 도구들도 모두 중복 제거가 목적</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">7. 리팩토링 후 기대 효과</h2>
+        
+        <ul style="margin-left: 40px;">
+            <li><strong>코드 양 감소</strong>: 간결하고 읽기 쉬운 구조</li>
+            <li><strong>유지보수성 향상</strong>: 수정이 쉽고 안전</li>
+            <li><strong>확장성 증대</strong>: 새로운 기능 추가 용이</li>
+            <li><strong>버그 감소</strong>: 중복으로 인한 실수 방지</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">8. 앞으로의 학습 계획</h2>
+        
+        <p style="margin-left: 20px;">다음 강의부터 실제로 코드를 개선하는 방법들을 배워보겠음:</p>
+        <ul style="margin-left: 40px;">
+            <li>중복되는 코드 제거 기법</li>
+            <li>코드를 더 간단하게 만드는 방법</li>
+            <li>유지보수하기 쉬운 구조 만들기</li>
+        </ul>
+        
+    </main>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson13.html">← 이전 강의</a> | 
+        <a href="JS_lesson15.html">다음 강의 →</a>
+    </nav>
+    
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 14강: 리팩토링 소개</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+</body>
+</html>

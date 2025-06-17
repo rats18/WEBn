@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>13강: 조건문의 활용 - 생활코딩 JavaScript</title>
+</head>
+<body>
+    <h1>13강: 조건문의 활용</h1>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>📺 강의 영상:</strong> 
+        <a href="https://youtu.be/p71PrgY0bbM?si=Nvmlnz79AESiVKPz" target="_blank">
+            생활코딩 - 조건문의 활용 (새 탭에서 열기)
+        </a>
+    </div>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson12.html">← 이전 강의</a> | 
+        <a href="JS_lesson14.html">다음 강의 →</a>
+    </nav>
+    
+    <main>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">1. 목표: 토글(Toggle) 기능 구현</h2>
+        <ul style="margin-left: 40px;">
+            <li><strong>하나의 버튼</strong>으로 Night ↔ Day 모드 전환</li>
+            <li>현재 상태에 따라 <strong>자동으로 반대 모드</strong>로 변경</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">2. 구현 과정</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.1 버튼 HTML 구조</h3>
+        <p style="margin-left: 40px;">&lt;input type="button" value="night" id="night_day" onclick="..."&gt;</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.2 현재 버튼 값 확인 방법</h3>
+        <p style="margin-left: 40px;">document.querySelector('#night_day').value</p>
+        <p style="margin-left: 40px;">// 결과: "night" 또는 "day"</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.3 조건문 구조</h3>
+        <p style="margin-left: 40px;">if (document.querySelector('#night_day').value === 'night') {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;// Night 모드로 변경하는 코드</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;document.querySelector('body').style.backgroundColor = 'black';</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;document.querySelector('body').style.color = 'white';</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;document.querySelector('#night_day').value = 'day';</p>
+        <p style="margin-left: 40px;">} else {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;// Day 모드로 변경하는 코드</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;document.querySelector('body').style.backgroundColor = 'white';</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;document.querySelector('body').style.color = 'black';</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;document.querySelector('#night_day').value = 'night';</p>
+        <p style="margin-left: 40px;">}</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">3. 핵심 로직</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.1 상태 변경 순서</h3>
+        <ol style="margin-left: 40px;">
+            <li><strong>현재 버튼 값 확인</strong>: night 또는 day</li>
+            <li><strong>조건에 따른 동작</strong>:</li>
+            <ul style="margin-left: 20px;">
+                <li>버튼이 night면 → 어두운 테마 적용 + 버튼을 day로 변경</li>
+                <li>버튼이 day면 → 밝은 테마 적용 + 버튼을 night로 변경</li>
+            </ul>
+        </ol>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.2 동작 원리</h3>
+        <p style="margin-left: 40px;">// 처음 클릭 (버튼값: "night")</p>
+        <p style="margin-left: 40px;">if ("night" === "night") // true</p>
+        <p style="margin-left: 40px;">→ 어두운 테마 적용 + 버튼값을 "day"로 변경</p>
+        
+        <p style="margin-left: 40px;">// 두번째 클릭 (버튼값: "day")</p>
+        <p style="margin-left: 40px;">if ("day" === "night") // false</p>
+        <p style="margin-left: 40px;">→ else 구문 실행 → 밝은 테마 적용 + 버튼값을 "night"로 변경</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">4. 실습 체험</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.1 완성된 토글 기능</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="night" id="night_day" onclick="
+                if(document.querySelector('#night_day').value === 'night') {
+                    document.querySelector('body').style.backgroundColor = 'black';
+                    document.querySelector('body').style.color = 'white';
+                    document.querySelector('#night_day').value = 'day';
+                } else {
+                    document.querySelector('body').style.backgroundColor = 'white';
+                    document.querySelector('body').style.color = 'black';
+                    document.querySelector('#night_day').value = 'night';
+                }
+            ">
+        </p>
+        
+        <p style="margin-left: 40px;"><strong>버튼을 여러 번 클릭해보세요!</strong> 클릭할 때마다 테마가 바뀌고 버튼 텍스트도 변경됩니다.</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.2 버튼 값 확인 체험</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="현재 버튼 값 확인" onclick="
+                alert('현재 night_day 버튼의 값: ' + document.querySelector('#night_day').value);
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">5. 조건문의 실용적 가치</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.1 문제 해결</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>2개 버튼의 불편함</strong> 해결</li>
+            <li><strong>사용자가 상태 판단할 필요 없음</strong></li>
+            <li><strong>더 세련된 인터페이스</strong> 제공</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.2 프로그래밍적 의미</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>관념적 도구</strong>(비교연산자, Boolean, 조건문)가 <strong>현실적 문제 해결</strong></li>
+            <li>단순한 기능도 <strong>똑똑하게 동작</strong>하게 만듦</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">6. 핵심 개념</h2>
+        <ol style="margin-left: 40px;">
+            <li><strong>조건부 실행</strong>: 상황에 따라 다른 코드 실행</li>
+            <li><strong>상태 관리</strong>: 버튼 값으로 현재 상태 추적</li>
+            <li><strong>사용자 경험 개선</strong>: 더 직관적인 인터페이스</li>
+        </ol>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">7. 2강 목표 달성</h2>
+        <p style="margin-left: 20px;">2강에서 제시했던 "하나의 버튼으로 Night & Day 모드를 전환하는 기능"이 완성됨. 비교연산자와 조건문을 활용해서 프로그램이 현재 상태를 스스로 판단하고 적절한 동작을 수행하는 지능적인 기능 구현.</p>
+    </main>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson12.html">← 이전 강의</a> | 
+        <a href="JS_lesson14.html">다음 강의 →</a>
+    </nav>
+    
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 13강: 조건문의 활용</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+</body>
+</html>

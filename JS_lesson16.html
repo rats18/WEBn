@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>16강: 함수(Function) - 생활코딩 JavaScript</title>
+</head>
+<body>
+    <h1>16강: 함수(Function)</h1>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>📺 강의 영상:</strong> 
+        <a href="https://youtu.be/wjlbT3hvDMc?si=fw4jDyu-qUY5SmO2" target="_blank">
+            생활코딩 - 함수 (Function) (새 탭에서 열기)
+        </a>
+    </div>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson15.html">← 이전 강의</a> | 
+        <a href="JS_lesson17.html">다음 강의 →</a>
+    </nav>
+    
+    <main>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">1. 함수 기본 개념</h2>
+        <ul style="margin-left: 40px;">
+            <li>영어로 Function</li>
+            <li>반복되지만 <strong>연속적이지 않은</strong> 코드를 정리하는 도구</li>
+            <li>코드를 <strong>정리정돈</strong>하기 위한 수납상자</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">2. 함수가 필요한 상황</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.1 반복문으로 해결 안되는 경우</h3>
+        <p style="margin-left: 40px;">document.write("2&lt;br&gt;");</p>
+        <p style="margin-left: 40px;">document.write("3&lt;br&gt;");</p>
+        <p style="margin-left: 40px;">// 다른 코드들...</p>
+        <p style="margin-left: 40px;">document.write("2&lt;br&gt;");&nbsp;&nbsp;// 같은 코드가</p>
+        <p style="margin-left: 40px;">document.write("3&lt;br&gt;");&nbsp;&nbsp;// 다시 등장</p>
+        
+        <ul style="margin-left: 40px;">
+            <li><strong>반복문 사용 불가</strong>: 연속적이지 않은 중복</li>
+            <li><strong>1억개 중복 시</strong>: 반복문으로는 해결 불가능</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">3. 함수 기본 문법</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.1 함수 정의 (Function Declaration)</h3>
+        <p style="margin-left: 40px;">function two() {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;document.write("2&lt;br&gt;");</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;document.write("3&lt;br&gt;");</p>
+        <p style="margin-left: 40px;">}</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.2 함수 호출 (Function Call)</h3>
+        <p style="margin-left: 40px;">two();&nbsp;&nbsp;// 함수 실행</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.3 완성된 코드</h3>
+        <p style="margin-left: 40px;">document.write("1&lt;br&gt;");</p>
+        <p style="margin-left: 40px;">two();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 함수 호출</p>
+        <p style="margin-left: 40px;">document.write("4&lt;br&gt;");</p>
+        <p style="margin-left: 40px;">two();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 함수 재호출</p>
+        <p style="margin-left: 40px;">document.write("5&lt;br&gt;");</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">4. 실습 체험</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.1 함수 정의와 호출</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="함수 실행 체험" onclick="
+                function greeting() {
+                    alert('안녕하세요! 함수가 실행되었습니다!');
+                }
+                greeting();
+            ">
+        </p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.2 함수 재사용</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="함수 3번 호출" onclick="
+                function hello() {
+                    alert('Hello!');
+                }
+                hello();
+                hello();
+                hello();
+            ">
+        </p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.3 버튼 색상 변경 함수</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="이 버튼 꾸미기" onclick="
+                function decorateButton() {
+                    this.style.backgroundColor = 'skyblue';
+                    this.style.color = 'white';
+                    this.style.fontWeight = 'bold';
+                }
+                decorateButton.call(this);
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">5. 함수 동작 원리</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.1 웹브라우저의 처리 과정</h3>
+        <ol style="margin-left: 40px;">
+            <li><strong>함수 정의 인식</strong>: function two() { ... } 발견</li>
+            <li><strong>함수 내용 기억</strong>: 중괄호 안의 코드를 'two'라는 이름으로 저장</li>
+            <li><strong>함수 호출 인식</strong>: two() 발견 시 괄호로 실행 명령임을 인식</li>
+            <li><strong>함수 실행</strong>: 저장된 코드를 해당 위치에서 실행</li>
+        </ol>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.2 실행 순서 분석</h3>
+        <p style="margin-left: 40px;">// 실행 순서:</p>
+        <p style="margin-left: 40px;">document.write("1&lt;br&gt;");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 1 출력</p>
+        <p style="margin-left: 40px;">two();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 2, 3 출력 (함수 실행)</p>
+        <p style="margin-left: 40px;">document.write("4&lt;br&gt;");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 4 출력</p>
+        <p style="margin-left: 40px;">two();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 2, 3 출력 (함수 재실행)</p>
+        <p style="margin-left: 40px;">document.write("5&lt;br&gt;");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 5 출력</p>
+        <p style="margin-left: 40px;">// 결과: 1, 2, 3, 4, 2, 3, 5</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">6. 함수 구성 요소</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">6.1 필수 구성 요소</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>function 키워드</strong>: 함수 정의 선언</li>
+            <li><strong>함수명</strong>: 재사용할 때 호출할 이름</li>
+            <li><strong>() 괄호</strong>: 매개변수 자리 (지금은 비워둠)</li>
+            <li><strong>{} 중괄호</strong>: 실행할 코드 블록</li>
+            <li><strong>함수 호출</strong>: 함수명() 형태로 실행</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">6.2 문법 구조</h3>
+        <p style="margin-left: 40px;">function 함수명() {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;// 재사용할 코드</p>
+        <p style="margin-left: 40px;">}</p>
+        <p style="margin-left: 40px;">// 사용법</p>
+        <p style="margin-left: 40px;">함수명();&nbsp;&nbsp;// 함수 실행</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">7. 함수의 핵심 가치</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">7.1 코드 재사용성</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>같은 코드 반복 작성 불필요</strong></li>
+            <li>함수명으로 <strong>간단한 호출</strong></li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">7.2 유지보수성</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>한 곳만 수정</strong>하면 모든 사용처 반영</li>
+            <li>코드 변경이 <strong>안전하고 확실</strong></li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">7.3 가독성</h3>
+        <ul style="margin-left: 40px;">
+            <li>복잡한 코드를 <strong>의미있는 이름</strong>으로 추상화</li>
+            <li>전체 코드 흐름 <strong>이해 용이</strong></li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">8. 함수와 반복문의 차이</h2>
+        
+        <ul style="margin-left: 40px;">
+            <li><strong>반복문</strong>: 연속적인 반복 작업</li>
+            <li><strong>함수</strong>: 연속적이지 않은 중복 코드 정리</li>
+            <li><strong>활용 시점</strong>: 같은 코드가 여러 곳에 흩어져 있을 때</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">9. 핵심 기억사항</h2>
+        <ol style="margin-left: 40px;">
+            <li><strong>function 키워드</strong>: 함수 정의의 시작</li>
+            <li><strong>함수명()</strong>: 정의된 함수를 실행하는 방법</li>
+            <li><strong>코드 정리정돈</strong>: 복잡한 로직을 간단한 이름으로 포장</li>
+            <li><strong>재사용성</strong>: 한 번 정의하면 몇 번이든 호출 가능</li>
+        </ol>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">10. 함수의 본질</h2>
+        <p style="margin-left: 20px;">함수는 단순한 문법이 아니라 <strong>복잡한 소프트웨어를 관리 가능하게 만드는 핵심 도구</strong>. 코드 복잡도가 증가할 때 정말 엄청난 이득을 주는 정리정돈 도구.</p>
+    </main>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson15.html">← 이전 강의</a> | 
+        <a href="JS_lesson17.html">다음 강의 →</a>
+    </nav>
+    
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 16강: 함수(Function)</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+</body>
+</html>

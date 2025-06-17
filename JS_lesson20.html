@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>20강: 반복문 - 생활코딩 JavaScript</title>
+</head>
+<body>
+    <h1>20강: 반복문</h1>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>📺 강의 영상:</strong> 
+        <a href="https://youtu.be/aBJzzhQ6y-o?si=L4m_APxIwzGx1INC" target="_blank">
+            생활코딩 - 반복문 (새 탭에서 열기)
+        </a>
+    </div>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson19.html">← 이전 강의</a> | 
+        <a href="JS_lesson21.html">다음 강의 →</a>
+    </nav>
+    
+    <main>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">1. 반복문이란?</h2>
+        <ul style="margin-left: 40px;">
+            <li>영어로 Loop</li>
+            <li><strong>조건에 따라 같은 코드를 여러 번 실행</strong></li>
+            <li>반복적 작업의 <strong>절망적 상황에서 구원</strong></li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">2. while문 기본 구조</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.1 문법</h3>
+        <p style="margin-left: 40px;">while (조건) {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;// 반복 실행할 코드</p>
+        <p style="margin-left: 40px;">}</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.2 동작 원리</h3>
+        <ol style="margin-left: 40px;">
+            <li><strong>조건 확인</strong>: true면 실행, false면 종료</li>
+            <li><strong>코드 실행</strong>: 중괄호 안의 코드 실행</li>
+            <li><strong>다시 조건 확인</strong>: 1번으로 돌아가서 반복</li>
+            <li><strong>종료</strong>: 조건이 false가 되면 반복 종료</li>
+        </ol>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">3. 실제 구현 예제</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.1 3번 반복하는 코드</h3>
+        <p style="margin-left: 40px;">var i = 0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 카운터 변수</p>
+        <p style="margin-left: 40px;">while (i < 3) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 조건: i가 3보다 작을 때</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;document.write("2&lt;br&gt;");&nbsp;&nbsp;// 실행할 코드</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;document.write("3&lt;br&gt;");&nbsp;&nbsp;// 실행할 코드</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;i = i + 1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 카운터 증가</p>
+        <p style="margin-left: 40px;">}</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.2 실행 과정 분석</h3>
+        <p style="margin-left: 40px;">// 1차 실행: i=0, 0<3 (true) → 코드 실행 → i=1</p>
+        <p style="margin-left: 40px;">// 2차 실행: i=1, 1<3 (true) → 코드 실행 → i=2</p>
+        <p style="margin-left: 40px;">// 3차 실행: i=2, 2<3 (true) → 코드 실행 → i=3</p>
+        <p style="margin-left: 40px;">// 4차 확인: i=3, 3<3 (false) → 반복 종료</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">4. 실습 체험</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.1 간단한 반복 체험</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="3번 인사하기" onclick="
+                var i = 0;
+                var result = '';
+                while (i < 3) {
+                    result += '안녕하세요! (' + (i + 1) + '번째)' + String.fromCharCode(10);
+                    i = i + 1;
+                }
+                alert(result);
+            ">
+        </p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.2 카운터 증가 확인</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="카운터 변화 보기" onclick="
+                var i = 0;
+                var result = '카운터 변화:' + String.fromCharCode(10) + String.fromCharCode(10);
+                while (i < 5) {
+                    result += 'i = ' + i + String.fromCharCode(10);
+                    i = i + 1;
+                }
+                alert(result + String.fromCharCode(10) + '반복 종료: i = ' + i);
+            ">
+        </p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.3 반복 횟수 변경</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="10번 반복" onclick="
+                var i = 0;
+                var result = '';
+                while (i < 10) {
+                    result += '★';
+                    i = i + 1;
+                }
+                alert('별 10개: ' + result + String.fromCharCode(10) + '반복 횟수: ' + i + '번');
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">5. 핵심 구성 요소</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.1 카운터 변수</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>var i = 0</strong>: 반복 횟수를 세는 변수</li>
+            <li>관습적으로 i 사용 (꼭 i가 아니어도 됨)</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.2 조건식</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>i < 3</strong>: 언제까지 반복할지 결정</li>
+            <li>true일 때 계속, false일 때 종료</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.3 증감식</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>i = i + 1</strong>: 매번 카운터를 증가</li>
+            <li>반복 종료 조건에 도달하게 하는 핵심</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">6. 중요한 주의사항</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">6.1 무한루프 방지</h3>
+        <p style="margin-left: 40px;">// 위험한 코드 (무한루프)</p>
+        <p style="margin-left: 40px;">while (true) {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;document.write("끝나지 않음");</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;// i 증가가 없으면 영원히 반복</p>
+        <p style="margin-left: 40px;">}</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">6.2 안전한 코드</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>반드시 종료 조건</strong> 설정</li>
+            <li><strong>카운터 변수 증가</strong> 확인</li>
+            <li><strong>브라우저 자원 고갈</strong> 방지</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">7. 실용적 응용</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">7.1 구구단 출력</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="3단 출력" onclick="
+                var i = 1;
+                var result = '3단 구구단:' + String.fromCharCode(10) + String.fromCharCode(10);
+                while (i <= 9) {
+                    result += '3 × ' + i + ' = ' + (3 * i) + String.fromCharCode(10);
+                    i = i + 1;
+                }
+                alert(result);
+            ">
+        </p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">7.2 숫자 합계 계산</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="1부터 10까지 합계" onclick="
+                var i = 1;
+                var sum = 0;
+                while (i <= 10) {
+                    sum = sum + i;
+                    i = i + 1;
+                }
+                alert('1부터 10까지의 합: ' + sum);
+            ">
+        </p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">7.3 카운트다운</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="카운트다운" onclick="
+                var i = 5;
+                var result = '카운트다운:' + String.fromCharCode(10) + String.fromCharCode(10);
+                while (i > 0) {
+                    result += i + '...' + String.fromCharCode(10);
+                    i = i - 1;
+                }
+                result += 'GO!';
+                alert(result);
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">8. 반복문의 핵심 가치</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">8.1 문제 해결</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>반복적 코드 작성</strong> → <strong>효율적 반복문</strong></li>
+            <li><strong>1억줄 복사붙여넣기</strong> → <strong>몇 줄의 코드</strong></li>
+            <li><strong>수정의 악몽</strong> → <strong>한 곳만 수정</strong></li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">8.2 제어문으로서의 역할</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>순차 실행</strong>에서 <strong>반복 실행</strong>으로 확장</li>
+            <li>조건문과 함께 <strong>프로그램 흐름 제어</strong></li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">9. for문 미리보기</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">9.1 while문과 같은 기능</h3>
+        <p style="margin-left: 40px;">// while문</p>
+        <p style="margin-left: 40px;">var i = 0;</p>
+        <p style="margin-left: 40px;">while (i < 3) {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;document.write("hello");</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;i = i + 1;</p>
+        <p style="margin-left: 40px;">}</p>
+        
+        <p style="margin-left: 40px;">// for문 (간결한 표현)</p>
+        <p style="margin-left: 40px;">for (var i = 0; i < 3; i = i + 1) {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;document.write("hello");</p>
+        <p style="margin-left: 40px;">}</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">9.2 for문 체험</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="for문으로 3번 반복" onclick="
+                var result = 'for문 결과:' + String.fromCharCode(10) + String.fromCharCode(10);
+                for (var i = 0; i < 3; i = i + 1) {
+                    result += 'Hello ' + (i + 1) + String.fromCharCode(10);
+                }
+                alert(result);
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">10. 반복문 선택 가이드</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">10.1 while문</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>조건이 복잡한 경우</strong></li>
+            <li><strong>몇 번 반복할지 미리 알 수 없는 경우</strong></li>
+            <li>무한루프가 필요한 경우</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">10.2 for문</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>정확한 반복 횟수를 아는 경우</strong></li>
+            <li><strong>배열과 함께 사용하는 경우</strong></li>
+            <li>간결한 코드를 원하는 경우</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">11. 핵심 기억사항</h2>
+        <ol style="margin-left: 40px;">
+            <li><strong>while (조건)</strong>: 조건이 true인 동안 반복</li>
+            <li><strong>카운터 변수</strong>: 반복 횟수를 세는 변수 (보통 i)</li>
+            <li><strong>증감식</strong>: 매번 카운터를 변경해서 종료 조건 도달</li>
+            <li><strong>무한루프 주의</strong>: 종료 조건 반드시 확인</li>
+        </ol>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">12. 다음 단계</h2>
+        <p style="margin-left: 20px;">반복문 + 배열 = <strong>환상의 콤비</strong></p>
+        <p style="margin-left: 40px;">실제 웹페이지 제어에 활용하여 동적 HTML 생성의 기반을 다지겠습니다.</p>
+    </main>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson19.html">← 이전 강의</a> | 
+        <a href="JS_lesson21.html">다음 강의 →</a>
+    </nav>
+    
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 20강: 반복문</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+</body>
+</html>

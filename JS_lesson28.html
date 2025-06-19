@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>28강: 웹브라우저 제어 - 생활코딩 JavaScript</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            border-radius: 5px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+        .practice-area {
+            background-color: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #28a745;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .demo-box {
+            border: 2px solid #3498db;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: #ecf0f1;
+        }
+        nav {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>28강: 웹브라우저 제어</h1>
+            <p><strong>목표:</strong> DOM을 통한 웹페이지 요소 제어와 함수를 활용한 리팩토링</p>
+            <p><strong>키워드:</strong> DOM, document.querySelector, this, 매개변수, 리팩토링</p>
+        </header>
+
+        <main>
+            <div class="highlight">
+                <strong>🎯 이번 강의의 핵심</strong><br>
+                복잡한 인라인 JavaScript를 함수로 분리하여 코드의 재사용성과 유지보수성을 크게 향상시킵니다.
+            </div>
+
+            <h2>1. DOM(Document Object Model) 이해</h2>
+            <p style="margin-left: 20px;">웹페이지의 모든 요소를 JavaScript에서 제어할 수 있게 해주는 인터페이스입니다.</p>
+
+            <h3>1.1 document.querySelector 사용법</h3>
+            <div class="code-block">
+var target = document.querySelector('body');
+// CSS 선택자를 사용해 요소 선택
+var button = document.querySelector('input[type="button"]');
+            </div>
+
+            <h2>2. 함수를 활용한 리팩토링</h2>
+            <p style="margin-left: 20px;">중복되는 코드를 함수로 분리하여 효율적으로 관리합니다.</p>
+
+            <h3>2.1 리팩토링 전: 중복 코드</h3>
+            <div class="code-block">
+&lt;input type="button" value="night" onclick="
+    var target = document.querySelector('body');
+    if(this.value === 'night') {
+        target.style.backgroundColor = 'black';
+        target.style.color = 'white';
+        this.value = 'day';
+    } else {
+        target.style.backgroundColor = 'white';
+        target.style.color = 'black';
+        this.value = 'night';
+    }
+"&gt;
+            </div>
+
+            <h3>2.2 리팩토링 후: 함수 활용</h3>
+            <div class="code-block">
+function nightDayHandler(self) {
+    var target = document.querySelector('body');
+    if(self.value === 'night') {
+        target.style.backgroundColor = 'black';
+        target.style.color = 'white';
+        self.value = 'day';
+    } else {
+        target.style.backgroundColor = 'white';
+        target.style.color = 'black';
+        self.value = 'night';
+    }
+}
+
+&lt;input type="button" value="night" onclick="nightDayHandler(this)"&gt;
+            </div>
+
+            <div class="practice-area">
+                <h3>🎮 실습: Night & Day 모드 토글</h3>
+                <p>아래 버튼을 클릭해서 함수 기반 Night & Day 모드를 체험해보세요:</p>
+                <div class="demo-box" id="demoArea">
+                    <p>이 영역의 배경색과 글자색이 변경됩니다.</p>
+                    <button onclick="toggleMode(this)">Night</button>
+                </div>
+            </div>
+
+            <h2>3. this와 매개변수의 관계</h2>
+            <p style="margin-left: 20px;">이벤트 핸들러에서 this의 의미와 함수 매개변수로 전달하는 방법을 이해합니다.</p>
+
+            <h3>3.1 this 키워드의 문제</h3>
+            <div class="code-block">
+function nightDayHandler() {
+    // 여기서 this는 전역객체(window)를 가리킴
+    // 클릭된 버튼을 참조할 수 없음!
+}
+            </div>
+
+            <h3>3.2 매개변수를 통한 해결</h3>
+            <div class="code-block">
+function nightDayHandler(self) {
+    // self 매개변수로 클릭된 버튼 객체를 받음
+    if(self.value === 'night') {
+        // self를 통해 버튼 제어 가능
+    }
+}
+
+// 호출 시 this를 매개변수로 전달
+onclick="nightDayHandler(this)"
+            </div>
+
+            <div class="practice-area">
+                <h3>🔧 실습: 다중 버튼 제어</h3>
+                <p>하나의 함수로 여러 버튼을 제어해보세요:</p>
+                <div class="demo-box">
+                    <button onclick="toggleMode(this)">Night</button>
+                    <button onclick="toggleMode(this)">Night</button>
+                    <button onclick="toggleMode(this)">Night</button>
+                    <p>각 버튼이 독립적으로 상태를 관리합니다.</p>
+                </div>
+            </div>
+
+            <h2>4. 함수 사용의 효과</h2>
+
+            <h3>4.1 코드 중복 제거</h3>
+            <p style="margin-left: 20px;">동일한 기능을 여러 곳에서 사용할 때 함수 호출만으로 구현 가능합니다.</p>
+
+            <h3>4.2 유지보수성 향상</h3>
+            <p style="margin-left: 20px;">기능 수정이 필요할 때 함수 내용만 변경하면 모든 사용처에 자동 적용됩니다.</p>
+
+            <h3>4.3 가독성 개선</h3>
+            <p style="margin-left: 20px;">함수명을 통해 코드의 의도를 명확하게 표현할 수 있습니다.</p>
+
+            <div class="practice-area">
+                <h3>📊 실습: 효율성 비교</h3>
+                <p>함수 사용 전후의 코드 양을 비교해보세요:</p>
+                <div style="display: flex; gap: 20px;">
+                    <div style="flex: 1;">
+                        <strong>함수 사용 전 (중복)</strong>
+                        <div style="background: #ffebee; padding: 10px; margin: 5px 0; border-radius: 5px;">
+                            버튼 1: 50줄의 중복 코드<br>
+                            버튼 2: 50줄의 중복 코드<br>
+                            버튼 3: 50줄의 중복 코드<br>
+                            <strong>총 150줄</strong>
+                        </div>
+                    </div>
+                    <div style="flex: 1;">
+                        <strong>함수 사용 후 (효율적)</strong>
+                        <div style="background: #e8f5e8; padding: 10px; margin: 5px 0; border-radius: 5px;">
+                            함수 정의: 50줄<br>
+                            버튼 1: 함수 호출 1줄<br>
+                            버튼 2: 함수 호출 1줄<br>
+                            버튼 3: 함수 호출 1줄<br>
+                            <strong>총 53줄 (약 65% 감소)</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>5. DOM 조작의 핵심 패턴</h2>
+
+            <h3>5.1 요소 선택 → 상태 확인 → 조작</h3>
+            <div class="code-block">
+// 1단계: 요소 선택
+var target = document.querySelector('body');
+
+// 2단계: 현재 상태 확인
+if(self.value === 'night') {
+    // 3단계: 조작 실행
+    target.style.backgroundColor = 'black';
+}
+            </div>
+
+            <h3>5.2 이벤트 기반 상호작용</h3>
+            <p style="margin-left: 20px;">사용자의 행동(클릭, 입력 등)에 반응하여 웹페이지를 동적으로 변경합니다.</p>
+
+            <h2>6. 리팩토링의 핵심 가치</h2>
+
+            <h3>6.1 확장성</h3>
+            <p style="margin-left: 20px;">새로운 버튼 추가 시 단순 복사만으로 기능 구현이 가능합니다.</p>
+
+            <h3>6.2 안정성</h3>
+            <p style="margin-left: 20px;">모든 버튼이 동일한 로직으로 동작하여 일관성을 보장합니다.</p>
+
+            <h3>6.3 효율성</h3>
+            <p style="margin-left: 20px;">코드 양 감소로 네트워크 전송 비용과 메모리 사용량을 절약합니다.</p>
+
+            <div class="practice-area">
+                <h3>🎯 종합 실습: 고급 Night & Day 모드</h3>
+                <p>링크 색상도 함께 변경되는 완전한 Night & Day 모드를 체험해보세요:</p>
+                <div class="demo-box" id="advancedDemo">
+                    <h4>샘플 콘텐츠</h4>
+                    <p>이것은 <a href="#" class="demo-link">샘플 링크</a>가 포함된 텍스트입니다.</p>
+                    <p>또 다른 <a href="#" class="demo-link">링크 예시</a>도 있습니다.</p>
+                    <button onclick="advancedToggle(this)">Night</button>
+                </div>
+            </div>
+
+            <h2>7. 다음 단계 예고</h2>
+            <p style="margin-left: 20px;">웹브라우저 제어의 기초를 마스터했다면, 다음 강의에서는 <strong>CSS 변경</strong>을 통해 더욱 다양한 스타일 조작 기법을 학습할 예정입니다.</p>
+
+            <h2>8. 핵심 가치</h2>
+            <p style="margin-left: 20px;"><strong>"함수는 복잡한 코드를 의미있는 이름으로 포장하여, 재사용 가능하고 관리하기 쉬운 단위로 만드는 리팩토링의 핵심 도구다"</strong></p>
+
+            <p style="margin-left: 40px;">이제 DOM을 통해 웹페이지를 자유자재로 제어하고, 함수를 활용해 효율적이고 체계적인 코드를 작성할 수 있게 되었습니다!</p>
+        </main>
+
+        <nav>
+            <a href="index.html">← 목차로 돌아가기</a> | 
+            <a href="JS_lesson27.html">← 이전 강의</a> | 
+            <a href="JS_lesson29.html">다음 강의 →</a>
+        </nav>
+
+        <footer>
+            <p><strong>생활코딩 WEB2 JavaScript</strong> - 28강: 웹브라우저 제어</p>
+            <p>
+                <a href="index.html">전체 목차</a> | 
+                <a href="https://opentutorials.org/course/3085/18865" target="_blank">YouTube 강의 보기</a> |
+                <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // 기본 Night & Day 모드 함수
+        function toggleMode(self) {
+            var demoArea = document.getElementById('demoArea');
+            
+            if(self.value === 'Night') {
+                demoArea.style.backgroundColor = 'black';
+                demoArea.style.color = 'white';
+                self.value = 'Day';
+                self.style.backgroundColor = '#f39c12';
+            } else {
+                demoArea.style.backgroundColor = 'white';
+                demoArea.style.color = 'black';
+                self.value = 'Night';
+                self.style.backgroundColor = '#3498db';
+            }
+        }
+
+        // 고급 Night & Day 모드 함수 (링크 색상 포함)
+        function advancedToggle(self) {
+            var advancedDemo = document.getElementById('advancedDemo');
+            var links = advancedDemo.querySelectorAll('.demo-link');
+            
+            if(self.value === 'Night') {
+                advancedDemo.style.backgroundColor = 'black';
+                advancedDemo.style.color = 'white';
+                
+                // 모든 링크 색상 변경
+                for(var i = 0; i < links.length; i++) {
+                    links[i].style.color = '#3498db';
+                }
+                
+                self.value = 'Day';
+                self.style.backgroundColor = '#f39c12';
+                self.innerText = 'Day';
+            } else {
+                advancedDemo.style.backgroundColor = 'white';
+                advancedDemo.style.color = 'black';
+                
+                // 모든 링크 색상 원복
+                for(var i = 0; i < links.length; i++) {
+                    links[i].style.color = '#2980b9';
+                }
+                
+                self.value = 'Night';
+                self.style.backgroundColor = '#3498db';
+                self.innerText = 'Night';
+            }
+        }
+
+        // 페이지 로드 시 초기화
+        window.onload = function() {
+            console.log('28강: 웹브라우저 제어 페이지가 로드되었습니다!');
+            console.log('DOM을 통한 웹페이지 제어와 함수 활용 리팩토링을 학습해보세요.');
+        };
+    </script>
+</body>
+</html>

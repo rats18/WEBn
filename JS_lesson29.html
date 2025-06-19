@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>29강: CSS 변경 - 생활코딩 JavaScript</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            border-radius: 5px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+        .practice-area {
+            background-color: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #28a745;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .demo-box {
+            border: 2px solid #3498db;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: #ecf0f1;
+        }
+        .style-showcase {
+            padding: 20px;
+            margin: 10px 0;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .comparison-item {
+            padding: 15px;
+            border-radius: 5px;
+            border: 2px solid #3498db;
+        }
+        nav {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>29강: CSS 변경</h1>
+            <p><strong>목표:</strong> JavaScript로 CSS 스타일을 동적으로 변경하는 고급 기법 마스터</p>
+            <p><strong>키워드:</strong> style 속성, 동적 스타일링, CSS 프로퍼티, 카멜케이스</p>
+        </header>
+
+        <main>
+            <div class="highlight">
+                <strong>🎯 이번 강의의 핵심</strong><br>
+                JavaScript를 사용해 웹페이지의 CSS 스타일을 실시간으로 변경하여 동적이고 상호작용하는 사용자 인터페이스를 구현합니다.
+            </div>
+
+            <h2>1. CSS와 JavaScript의 만남</h2>
+            <p style="margin-left: 20px;">28강에서 배운 DOM 제어를 확장하여 더욱 다양한 CSS 속성을 동적으로 조작합니다.</p>
+
+            <h3>1.1 CSS 속성 접근 방법</h3>
+            <div class="code-block">
+// 기본 패턴: element.style.property = value
+document.querySelector('body').style.backgroundColor = 'black';
+document.querySelector('body').style.color = 'white';
+document.querySelector('body').style.fontSize = '18px';
+            </div>
+
+            <h3>1.2 CSS vs JavaScript 속성명 차이</h3>
+            <div class="comparison-grid">
+                <div class="comparison-item" style="background-color: #ffebee;">
+                    <strong>CSS 속성명</strong><br>
+                    background-color<br>
+                    font-size<br>
+                    border-radius<br>
+                    text-align
+                </div>
+                <div class="comparison-item" style="background-color: #e8f5e8;">
+                    <strong>JavaScript 속성명</strong><br>
+                    backgroundColor<br>
+                    fontSize<br>
+                    borderRadius<br>
+                    textAlign
+                </div>
+            </div>
+
+            <div class="practice-area">
+                <h3>🎮 실습: CSS 속성명 변환 체험</h3>
+                <p>버튼을 클릭해서 CSS 하이픈 표기법과 JavaScript 카멜케이스 표기법의 차이를 확인해보세요:</p>
+                <div class="demo-box" id="propertyDemo">
+                    <p>이 영역의 스타일이 JavaScript로 변경됩니다.</p>
+                    <button onclick="changeBackgroundColor()">배경색 변경 (backgroundColor)</button>
+                    <button onclick="changeFontSize()">글자 크기 변경 (fontSize)</button>
+                    <button onclick="changeBorderRadius()">모서리 둥글게 (borderRadius)</button>
+                    <button onclick="resetStyles()">원래대로</button>
+                </div>
+            </div>
+
+            <h2>2. 다양한 CSS 속성 제어</h2>
+
+            <h3>2.1 색상 관련 속성</h3>
+            <div class="code-block">
+// 색상 지정 방법들
+element.style.color = 'red';                    // 색상명
+element.style.color = '#3498db';                // 16진수
+element.style.color = 'rgb(52, 152, 219)';      // RGB
+element.style.color = 'rgba(52, 152, 219, 0.5)'; // RGBA (투명도)
+            </div>
+
+            <h3>2.2 크기와 간격 속성</h3>
+            <div class="code-block">
+// 크기와 간격
+element.style.width = '200px';
+element.style.height = '100px';
+element.style.margin = '10px';
+element.style.padding = '20px';
+element.style.fontSize = '16px';
+            </div>
+
+            <h3>2.3 레이아웃 속성</h3>
+            <div class="code-block">
+// 레이아웃과 위치
+element.style.display = 'block';     // 또는 'none', 'inline'
+element.style.position = 'absolute';
+element.style.top = '50px';
+element.style.left = '100px';
+            </div>
+
+            <div class="practice-area">
+                <h3>🎨 실습: 종합 스타일링 워크샵</h3>
+                <p>다양한 CSS 속성을 JavaScript로 제어해보세요:</p>
+                <div class="style-showcase" id="styleShowcase">
+                    <h4>스타일링 대상 요소</h4>
+                    <p>이 박스의 스타일을 자유자재로 변경해보세요!</p>
+                </div>
+                <div style="margin: 10px 0;">
+                    <button onclick="applyColorTheme()">컬러 테마</button>
+                    <button onclick="applySizeTheme()">크기 조정</button>
+                    <button onclick="applyLayoutTheme()">레이아웃 변경</button>
+                    <button onclick="applyAnimationTheme()">애니메이션 효과</button>
+                    <button onclick="resetShowcase()">초기화</button>
+                </div>
+            </div>
+
+            <h2>3. 조건부 스타일링</h2>
+            <p style="margin-left: 20px;">현재 상태에 따라 다른 스타일을 적용하는 고급 패턴입니다.</p>
+
+            <h3>3.1 토글 패턴</h3>
+            <div class="code-block">
+function toggleTheme(element) {
+    if(element.style.backgroundColor === 'black') {
+        element.style.backgroundColor = 'white';
+        element.style.color = 'black';
+    } else {
+        element.style.backgroundColor = 'black';
+        element.style.color = 'white';
+    }
+}
+            </div>
+
+            <h3>3.2 다중 상태 관리</h3>
+            <div class="code-block">
+function setTheme(themeName) {
+    var body = document.querySelector('body');
+    
+    if(themeName === 'dark') {
+        body.style.backgroundColor = 'black';
+        body.style.color = 'white';
+    } else if(themeName === 'blue') {
+        body.style.backgroundColor = 'navy';
+        body.style.color = 'lightblue';
+    } else if(themeName === 'green') {
+        body.style.backgroundColor = 'darkgreen';
+        body.style.color = 'lightgreen';
+    }
+}
+            </div>
+
+            <div class="practice-area">
+                <h3>🌈 실습: 다중 테마 시스템</h3>
+                <p>여러 가지 테마 중에서 선택할 수 있는 고급 테마 시스템을 체험해보세요:</p>
+                <div class="demo-box" id="themeDemo">
+                    <h4>테마 데모 영역</h4>
+                    <p>다양한 테마를 적용해보세요!</p>
+                    <p>현재 테마: <span id="currentTheme">기본</span></p>
+                </div>
+                <div style="margin: 10px 0;">
+                    <button onclick="setDemoTheme('default')">기본 테마</button>
+                    <button onclick="setDemoTheme('dark')">다크 테마</button>
+                    <button onclick="setDemoTheme('ocean')">오션 테마</button>
+                    <button onclick="setDemoTheme('forest')">포레스트 테마</button>
+                    <button onclick="setDemoTheme('sunset')">선셋 테마</button>
+                </div>
+            </div>
+
+            <h2>4. 다중 요소 스타일링</h2>
+            <p style="margin-left: 20px;">여러 요소를 한 번에 스타일링하는 효율적인 방법입니다.</p>
+
+            <h3>4.1 querySelectorAll 활용</h3>
+            <div class="code-block">
+// 모든 링크의 색상을 한 번에 변경
+var links = document.querySelectorAll('a');
+for(var i = 0; i < links.length; i++) {
+    links[i].style.color = 'red';
+    links[i].style.textDecoration = 'none';
+}
+            </div>
+
+            <h3>4.2 클래스별 스타일링</h3>
+            <div class="code-block">
+// 특정 클래스의 모든 요소 스타일링
+var buttons = document.querySelectorAll('.demo-button');
+for(var i = 0; i < buttons.length; i++) {
+    buttons[i].style.backgroundColor = 'blue';
+    buttons[i].style.color = 'white';
+    buttons[i].style.border = 'none';
+}
+            </div>
+
+            <div class="practice-area">
+                <h3>⚡ 실습: 배치 스타일링</h3>
+                <p>여러 요소를 한 번에 스타일링하는 강력한 기능을 체험해보세요:</p>
+                <div class="demo-box">
+                    <p class="batch-target">스타일링 대상 1</p>
+                    <p class="batch-target">스타일링 대상 2</p>
+                    <p class="batch-target">스타일링 대상 3</p>
+                    <p class="batch-target">스타일링 대상 4</p>
+                </div>
+                <div style="margin: 10px 0;">
+                    <button onclick="batchStyleRed()">모두 빨간색</button>
+                    <button onclick="batchStyleBlue()">모두 파란색</button>
+                    <button onclick="batchStyleLarge()">모두 크게</button>
+                    <button onclick="batchStyleReset()">원래대로</button>
+                </div>
+            </div>
+
+            <h2>5. 실무에서 자주 사용되는 CSS 제어 패턴</h2>
+
+            <h3>5.1 표시/숨김 제어</h3>
+            <div class="code-block">
+// 요소 숨기기/보이기
+element.style.display = 'none';    // 숨기기
+element.style.display = 'block';   // 보이기
+element.style.visibility = 'hidden';  // 자리 차지하며 숨기기
+element.style.visibility = 'visible'; // 보이기
+            </div>
+
+            <h3>5.2 투명도 제어</h3>
+            <div class="code-block">
+// 투명도 조절 (0: 완전 투명, 1: 완전 불투명)
+element.style.opacity = '0.5';    // 반투명
+element.style.opacity = '0';      // 투명
+element.style.opacity = '1';      // 불투명
+            </div>
+
+            <h3>5.3 전환 효과</h3>
+            <div class="code-block">
+// CSS 전환 효과 추가
+element.style.transition = 'all 0.3s ease';
+element.style.transform = 'scale(1.2)';  // 1.2배 확대
+element.style.transform = 'rotate(45deg)'; // 45도 회전
+            </div>
+
+            <div class="practice-area">
+                <h3>🎭 실습: 고급 효과 체험</h3>
+                <p>실무에서 자주 사용되는 고급 CSS 효과들을 체험해보세요:</p>
+                <div class="demo-box">
+                    <div id="effectTarget" style="width: 100px; height: 100px; background-color: #3498db; margin: 20px auto; border-radius: 10px; transition: all 0.3s ease;">
+                        Effect Target
+                    </div>
+                </div>
+                <div style="margin: 10px 0;">
+                    <button onclick="toggleVisibility()">보이기/숨기기</button>
+                    <button onclick="toggleOpacity()">투명도 변경</button>
+                    <button onclick="scaleElement()">크기 변경</button>
+                    <button onclick="rotateElement()">회전</button>
+                    <button onclick="resetEffects()">효과 초기화</button>
+                </div>
+            </div>
+
+            <h2>6. CSS 변경의 실무 활용</h2>
+
+            <h3>6.1 사용자 인터페이스 개선</h3>
+            <p style="margin-left: 20px;">버튼 호버 효과, 메뉴 애니메이션, 알림 메시지 등</p>
+
+            <h3>6.2 반응형 웹 디자인</h3>
+            <p style="margin-left: 20px;">화면 크기에 따른 레이아웃 동적 조정</p>
+
+            <h3>6.3 테마 시스템</h3>
+            <p style="margin-left: 20px;">사용자 선호도에 따른 다크/라이트 모드 전환</p>
+
+            <h2>7. 핵심 가치</h2>
+            <p style="margin-left: 20px;"><strong>"JavaScript를 통한 CSS 제어는 정적인 웹페이지를 동적이고 상호작용하는 살아있는 애플리케이션으로 변화시키는 핵심 기술이다"</strong></p>
+
+            <p style="margin-left: 40px;">이제 사용자의 행동에 반응하여 웹페이지의 모양과 느낌을 자유자재로 변경할 수 있는 강력한 능력을 갖게 되었습니다!</p>
+        </main>
+
+        <nav>
+            <a href="index.html">← 목차로 돌아가기</a> | 
+            <a href="JS_lesson28.html">← 이전 강의</a> | 
+            <a href="JS_lesson30.html">다음 강의 →</a>
+        </nav>
+
+        <footer>
+            <p><strong>생활코딩 WEB2 JavaScript</strong> - 29강: CSS 변경</p>
+            <p>
+                <a href="index.html">전체 목차</a> | 
+                <a href="https://opentutorials.org/course/3085/18866" target="_blank">YouTube 강의 보기</a> |
+                <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // CSS 속성명 변환 실습
+        function changeBackgroundColor() {
+            var demo = document.getElementById('propertyDemo');
+            demo.style.backgroundColor = '#e74c3c';
+            console.log('CSS: background-color → JavaScript: backgroundColor');
+        }
+
+        function changeFontSize() {
+            var demo = document.getElementById('propertyDemo');
+            demo.style.fontSize = '20px';
+            console.log('CSS: font-size → JavaScript: fontSize');
+        }
+
+        function changeBorderRadius() {
+            var demo = document.getElementById('propertyDemo');
+            demo.style.borderRadius = '20px';
+            console.log('CSS: border-radius → JavaScript: borderRadius');
+        }
+
+        function resetStyles() {
+            var demo = document.getElementById('propertyDemo');
+            demo.style.backgroundColor = '#ecf0f1';
+            demo.style.fontSize = '16px';
+            demo.style.borderRadius = '5px';
+        }
+
+        // 종합 스타일링 워크샵
+        function applyColorTheme() {
+            var showcase = document.getElementById('styleShowcase');
+            showcase.style.backgroundColor = '#9b59b6';
+            showcase.style.color = 'white';
+            showcase.style.border = '3px solid #8e44ad';
+        }
+
+        function applySizeTheme() {
+            var showcase = document.getElementById('styleShowcase');
+            showcase.style.padding = '40px';
+            showcase.style.fontSize = '18px';
+            showcase.style.margin = '20px 0';
+        }
+
+        function applyLayoutTheme() {
+            var showcase = document.getElementById('styleShowcase');
+            showcase.style.textAlign = 'center';
+            showcase.style.borderRadius = '20px';
+            showcase.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+        }
+
+        function applyAnimationTheme() {
+            var showcase = document.getElementById('styleShowcase');
+            showcase.style.transition = 'all 0.5s ease';
+            showcase.style.transform = 'scale(1.05)';
+        }
+
+        function resetShowcase() {
+            var showcase = document.getElementById('styleShowcase');
+            showcase.style = '';
+            showcase.className = 'style-showcase';
+        }
+
+        // 다중 테마 시스템
+        function setDemoTheme(themeName) {
+            var demo = document.getElementById('themeDemo');
+            var themeDisplay = document.getElementById('currentTheme');
+            
+            switch(themeName) {
+                case 'default':
+                    demo.style.backgroundColor = '#ecf0f1';
+                    demo.style.color = 'black';
+                    demo.style.border = '2px solid #3498db';
+                    themeDisplay.textContent = '기본';
+                    break;
+                case 'dark':
+                    demo.style.backgroundColor = '#2c3e50';
+                    demo.style.color = 'white';
+                    demo.style.border = '2px solid #34495e';
+                    themeDisplay.textContent = '다크';
+                    break;
+                case 'ocean':
+                    demo.style.backgroundColor = '#3498db';
+                    demo.style.color = 'white';
+                    demo.style.border = '2px solid #2980b9';
+                    themeDisplay.textContent = '오션';
+                    break;
+                case 'forest':
+                    demo.style.backgroundColor = '#27ae60';
+                    demo.style.color = 'white';
+                    demo.style.border = '2px solid #229954';
+                    themeDisplay.textContent = '포레스트';
+                    break;
+                case 'sunset':
+                    demo.style.backgroundColor = '#e67e22';
+                    demo.style.color = 'white';
+                    demo.style.border = '2px solid #d35400';
+                    themeDisplay.textContent = '선셋';
+                    break;
+            }
+        }
+
+        // 배치 스타일링
+        function batchStyleRed() {
+            var targets = document.querySelectorAll('.batch-target');
+            for(var i = 0; i < targets.length; i++) {
+                targets[i].style.color = 'red';
+                targets[i].style.fontWeight = 'bold';
+            }
+        }
+
+        function batchStyleBlue() {
+            var targets = document.querySelectorAll('.batch-target');
+            for(var i = 0; i < targets.length; i++) {
+                targets[i].style.color = 'blue';
+                targets[i].style.textDecoration = 'underline';
+            }
+        }
+
+        function batchStyleLarge() {
+            var targets = document.querySelectorAll('.batch-target');
+            for(var i = 0; i < targets.length; i++) {
+                targets[i].style.fontSize = '20px';
+                targets[i].style.padding = '10px';
+            }
+        }
+
+        function batchStyleReset() {
+            var targets = document.querySelectorAll('.batch-target');
+            for(var i = 0; i < targets.length; i++) {
+                targets[i].style = '';
+            }
+        }
+
+        // 고급 효과
+        var isHidden = false;
+        var isTransparent = false;
+        var isScaled = false;
+        var isRotated = false;
+
+        function toggleVisibility() {
+            var target = document.getElementById('effectTarget');
+            if(isHidden) {
+                target.style.display = 'block';
+                isHidden = false;
+            } else {
+                target.style.display = 'none';
+                isHidden = true;
+            }
+        }
+
+        function toggleOpacity() {
+            var target = document.getElementById('effectTarget');
+            if(isTransparent) {
+                target.style.opacity = '1';
+                isTransparent = false;
+            } else {
+                target.style.opacity = '0.3';
+                isTransparent = true;
+            }
+        }
+
+        function scaleElement() {
+            var target = document.getElementById('effectTarget');
+            if(isScaled) {
+                target.style.transform = target.style.transform.replace('scale(1.5)', '');
+                isScaled = false;
+            } else {
+                target.style.transform += ' scale(1.5)';
+                isScaled = true;
+            }
+        }
+
+        function rotateElement() {
+            var target = document.getElementById('effectTarget');
+            if(isRotated) {
+                target.style.transform = target.style.transform.replace('rotate(45deg)', '');
+                isRotated = false;
+            } else {
+                target.style.transform += ' rotate(45deg)';
+                isRotated = true;
+            }
+        }
+
+        function resetEffects() {
+            var target = document.getElementById('effectTarget');
+            target.style.display = 'block';
+            target.style.opacity = '1';
+            target.style.transform = '';
+            isHidden = false;
+            isTransparent = false;
+            isScaled = false;
+            isRotated = false;
+        }
+
+        // 페이지 로드 시 초기화
+        window.onload = function() {
+            console.log('29강: CSS 변경 페이지가 로드되었습니다!');
+            console.log('JavaScript를 통한 동적 스타일링 기법을 학습해보세요.');
+        };
+    </script>
+</body>
+</html>

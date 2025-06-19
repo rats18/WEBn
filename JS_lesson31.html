@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>31강: 최종 프로젝트 - Night & Day 모드 - 생활코딩 JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            color: black;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+        }
+        .highlight {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        .practice-area {
+            border: 2px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            background-color: #f8fff9;
+        }
+        .practice-area h3 {
+            color: #155724;
+            margin-top: 0;
+        }
+        .practice-area button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .practice-area button:hover {
+            background-color: #218838;
+        }
+        .final-project {
+            border: 3px solid #ff6b6b;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+        }
+        .final-project h3 {
+            color: #c62828;
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+        .project-demo {
+            border: 2px solid #3498db;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        .achievement {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4a 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #f39c12;
+        }
+        .feature-list {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .feature-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .feature-list li {
+            margin: 8px 0;
+        }
+        a {
+            color: #2980b9;
+        }
+        nav {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>31강: 최종 프로젝트 - Night & Day 모드</h1>
+            <p><strong>목표:</strong> 지금까지 배운 모든 기술을 통합하여 완전한 Night & Day 모드 구현</p>
+            <p><strong>키워드:</strong> 프로젝트 통합, 사용자 경험, 코드 최적화, 실무 활용</p>
+        </header>
+
+        <main>
+            <div class="highlight">
+                <strong>🎯 이번 강의의 핵심</strong><br>
+                28강부터 30강까지 학습한 웹브라우저 제어 기술을 모두 활용하여 실무에서 사용할 수 있는 완전한 Night & Day 모드 시스템을 완성합니다.
+            </div>
+
+            <div class="achievement">
+                <strong>🏆 학습 성취도 체크</strong><br>
+                ✅ DOM 조작 (28강) | ✅ CSS 변경 (29강) | ✅ 속성 제어 (30강)<br>
+                이제 모든 기술을 통합하여 실무급 프로젝트를 완성할 차례입니다!
+            </div>
+
+            <h2>1. 프로젝트 통합 전략</h2>
+
+            <h3>1.1 사용할 핵심 기술들</h3>
+            <div class="feature-list">
+                <ul>
+                    <li><strong>DOM 조작</strong>: document.querySelector, querySelectorAll</li>
+                    <li><strong>CSS 제어</strong>: style 속성 동적 변경</li>
+                    <li><strong>속성 제어</strong>: getAttribute, setAttribute</li>
+                    <li><strong>이벤트 처리</strong>: 사용자 상호작용 관리</li>
+                    <li><strong>함수 활용</strong>: 코드 재사용성과 유지보수성</li>
+                </ul>
+            </div>
+
+            <h3>1.2 구현할 기능들</h3>
+            <div class="feature-list">
+                <ul>
+                    <li>배경색과 글자색 완전 제어</li>
+                    <li>모든 링크 색상 일괄 변경</li>
+                    <li>버튼 상태 및 텍스트 동적 변경</li>
+                    <li>부드러운 전환 효과</li>
+                    <li>사용자 설정 저장 (시뮬레이션)</li>
+                </ul>
+            </div>
+
+            <h2>2. 최종 프로젝트 코드 구조</h2>
+
+            <h3>2.1 완전한 Night & Day 함수</h3>
+            <div class="code-block">
+function masterNightDayHandler(self) {
+    // 1. 현재 모드 확인
+    var currentMode = self.getAttribute('data-mode') || 'day';
+    
+    // 2. 대상 요소들 선택
+    var body = document.querySelector('body');
+    var links = document.querySelectorAll('a');
+    var buttons = document.querySelectorAll('.mode-button');
+    
+    // 3. 모드에 따른 스타일 적용
+    if (currentMode === 'day') {
+        // Night 모드로 전환
+        body.style.backgroundColor = '#1a1a1a';
+        body.style.color = '#e0e0e0';
+        body.style.transition = 'all 0.3s ease';
+        
+        // 모든 링크 색상 변경
+        for (var i = 0; i < links.length; i++) {
+            links[i].style.color = '#4FC3F7';
+        }
+        
+        // 모든 버튼 상태 업데이트
+        for (var j = 0; j < buttons.length; j++) {
+            buttons[j].setAttribute('data-mode', 'night');
+            buttons[j].value = 'Day';
+            buttons[j].style.backgroundColor = '#424242';
+            buttons[j].style.color = '#ffffff';
+        }
+        
+        console.log('Night 모드 활성화');
+        
+    } else {
+        // Day 모드로 전환
+        body.style.backgroundColor = '#ffffff';
+        body.style.color = '#333333';
+        
+        // 모든 링크 색상 변경
+        for (var i = 0; i < links.length; i++) {
+            links[i].style.color = '#1976D2';
+        }
+        
+        // 모든 버튼 상태 업데이트
+        for (var j = 0; j < buttons.length; j++) {
+            buttons[j].setAttribute('data-mode', 'day');
+            buttons[j].value = 'Night';
+            buttons[j].style.backgroundColor = '#2196F3';
+            buttons[j].style.color = '#ffffff';
+        }
+        
+        console.log('Day 모드 활성화');
+    }
+}
+            </div>
+
+            <h3>2.2 향상된 버전 - 테마 객체 활용</h3>
+            <div class="code-block">
+var ThemeManager = {
+    themes: {
+        day: {
+            background: '#ffffff',
+            color: '#333333',
+            linkColor: '#1976D2',
+            buttonBg: '#2196F3',
+            buttonText: 'Night'
+        },
+        night: {
+            background: '#1a1a1a',
+            color: '#e0e0e0',
+            linkColor: '#4FC3F7',
+            buttonBg: '#424242',
+            buttonText: 'Day'
+        }
+    },
+    
+    applyTheme: function(themeName) {
+        var theme = this.themes[themeName];
+        if (!theme) return;
+        
+        // 스타일 적용
+        document.body.style.backgroundColor = theme.background;
+        document.body.style.color = theme.color;
+        document.body.style.transition = 'all 0.3s ease';
+        
+        // 링크 색상 변경
+        var links = document.querySelectorAll('a');
+        for (var i = 0; i < links.length; i++) {
+            links[i].style.color = theme.linkColor;
+        }
+        
+        // 버튼 업데이트
+        var buttons = document.querySelectorAll('.mode-button');
+        for (var j = 0; j < buttons.length; j++) {
+            buttons[j].value = theme.buttonText;
+            buttons[j].style.backgroundColor = theme.buttonBg;
+            buttons[j].setAttribute('data-current-theme', themeName);
+        }
+    },
+    
+    toggle: function(button) {
+        var currentTheme = button.getAttribute('data-current-theme') || 'day';
+        var nextTheme = currentTheme === 'day' ? 'night' : 'day';
+        this.applyTheme(nextTheme);
+    }
+};
+            </div>
+
+            <div class="final-project">
+                <h3>🌟 최종 프로젝트 데모</h3>
+                <p>아래는 모든 기술을 통합한 완전한 Night & Day 모드입니다:</p>
+                
+                <div class="project-demo" id="finalProject">
+                    <h4>생활코딩 JavaScript 학습 사이트</h4>
+                    <p>이 프로젝트에서는 다음과 같은 기능들을 구현했습니다:</p>
+                    <ul>
+                        <li><a href="#" class="demo-link">JavaScript 기초 강의</a></li>
+                        <li><a href="#" class="demo-link">DOM 조작 완전 정복</a></li>
+                        <li><a href="#" class="demo-link">함수와 객체 활용법</a></li>
+                        <li><a href="#" class="demo-link">실무 프로젝트 구현</a></li>
+                    </ul>
+                    
+                    <div style="margin-top: 20px; text-align: center;">
+                        <input type="button" class="mode-button" value="Night" data-current-theme="day" 
+                               onclick="ThemeManager.toggle(this)"
+                               style="background-color: #2196F3; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-size: 16px; margin: 5px;">
+                        
+                        <input type="button" class="mode-button" value="Night" data-current-theme="day" 
+                               onclick="ThemeManager.toggle(this)"
+                               style="background-color: #2196F3; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-size: 16px; margin: 5px;">
+                        
+                        <input type="button" class="mode-button" value="Night" data-current-theme="day" 
+                               onclick="ThemeManager.toggle(this)"
+                               style="background-color: #2196F3; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-size: 16px; margin: 5px;">
+                    </div>
+                    
+                    <div style="margin-top: 15px; padding: 10px; background-color: #f0f0f0; border-radius: 5px; font-size: 14px;">
+                        <strong>✨ 구현된 기능:</strong><br>
+                        • 배경색과 글자색 완전 제어<br>
+                        • 모든 링크 색상 일괄 변경<br>
+                        • 다중 버튼 동기화<br>
+                        • 부드러운 전환 효과<br>
+                        • 객체 기반 테마 관리
+                    </div>
+                </div>
+            </div>
+
+            <h2>3. 실무 활용 패턴</h2>
+
+            <h3>3.1 사용자 설정 저장 (시뮬레이션)</h3>
+            <div class="code-block">
+var AdvancedThemeManager = {
+    init: function() {
+        // 페이지 로드 시 저장된 테마 적용
+        var savedTheme = this.getSavedTheme();
+        if (savedTheme) {
+            this.applyTheme(savedTheme);
+        }
+    },
+    
+    getSavedTheme: function() {
+        // 실제로는 localStorage 사용
+        // return localStorage.getItem('userTheme');
+        return window.userTheme || 'day'; // 시뮬레이션
+    },
+    
+    saveTheme: function(theme) {
+        // 실제로는 localStorage 사용
+        // localStorage.setItem('userTheme', theme);
+        window.userTheme = theme; // 시뮬레이션
+        console.log('테마 저장됨:', theme);
+    },
+    
+    toggle: function(button) {
+        var currentTheme = button.getAttribute('data-current-theme') || 'day';
+        var nextTheme = currentTheme === 'day' ? 'night' : 'day';
+        
+        ThemeManager.applyTheme(nextTheme);
+        this.saveTheme(nextTheme);
+    }
+};
+            </div>
+
+            <div class="practice-area">
+                <h3>🎮 고급 실습: 사용자 설정 저장</h3>
+                <p>아래 버튼들로 설정 저장/불러오기 시스템을 테스트해보세요 (실제 테마 변경과는 독립적):</p>
+                <div style="text-align: center; margin: 15px 0;">
+                    <button onclick="simulateThemeSave()" style="padding: 10px 20px; margin: 5px;">
+                        설정 저장 시뮬레이션
+                    </button>
+                    <button onclick="showCurrentSettings()" style="padding: 10px 20px; margin: 5px;">
+                        저장된 설정 확인
+                    </button>
+                    <button onclick="simulateThemeLoad()" style="padding: 10px 20px; margin: 5px;">
+                        설정 불러오기 시뮬레이션
+                    </button>
+                    <button onclick="resetSettings()" style="padding: 10px 20px; margin: 5px;">
+                        설정 초기화
+                    </button>
+                </div>
+                <div id="settingsDisplay" style="background: #f0f0f0; padding: 10px; border-radius: 5px; margin-top: 10px;">
+                    여기에 설정 정보가 표시됩니다.
+                </div>
+            </div>
+
+            <h2>4. 코드 품질과 성능 최적화</h2>
+
+            <h3>4.1 최적화된 DOM 조작</h3>
+            <div class="code-block">
+// 좋은 예: 한 번에 모든 링크 선택
+var links = document.querySelectorAll('a');
+for (var i = 0; i < links.length; i++) {
+    links[i].style.color = newColor;
+}
+
+// 피해야 할 예: 반복적인 DOM 접근
+// for (var i = 0; i < 10; i++) {
+//     document.querySelectorAll('a')[i].style.color = newColor;
+// }
+            </div>
+
+            <h3>4.2 재사용 가능한 함수 설계</h3>
+            <div class="code-block">
+function createThemeToggle(containerId, themes) {
+    var container = document.querySelector(containerId);
+    var button = document.createElement('button');
+    
+    button.textContent = 'Toggle Theme';
+    button.onclick = function() {
+        // 테마 전환 로직
+    };
+    
+    container.appendChild(button);
+    return button;
+}
+            </div>
+
+            <h2>5. 프로젝트 완성도 평가</h2>
+
+            <div class="achievement">
+                <strong>📊 완성된 기능 체크리스트</strong><br>
+                ✅ DOM 요소 선택과 조작<br>
+                ✅ CSS 스타일 동적 변경<br>
+                ✅ HTML 속성 제어<br>
+                ✅ 다중 요소 일괄 처리<br>
+                ✅ 이벤트 기반 상호작용<br>
+                ✅ 객체를 활용한 코드 구조화<br>
+                ✅ 사용자 경험 최적화<br>
+                ✅ 실무 활용 가능한 코드 품질
+            </div>
+
+            <h2>6. 다음 단계 예고</h2>
+            <p style="margin-left: 20px;">최종 프로젝트를 완성했다면, 다음 강의에서는 <strong>조건문 활용한 토글 기능</strong>을 통해 코드를 더욱 간결하고 효율적으로 만들어보겠습니다.</p>
+
+            <h2>7. 핵심 가치</h2>
+            <p style="margin-left: 20px;"><strong>"완전한 프로젝트는 기술의 단순한 조합이 아니라, 사용자 경험을 고려한 통합적 사고의 결과입니다"</strong></p>
+
+            <p style="margin-left: 40px;">지금까지 학습한 모든 JavaScript 기술을 하나로 통합하여, 실제 웹사이트에서 사용할 수 있는 완전한 기능을 구현할 수 있게 되었습니다!</p>
+        </main>
+    </div>
+
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson30.html">← 이전 강의</a> | 
+        <a href="JS_lesson32.html">다음 강의 →</a>
+    </nav>
+
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 31강: 최종 프로젝트 - Night & Day 모드</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://youtu.be/GIB8O6R3wko?si=dkEirY1dI8xnQRxd" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+
+    <script>
+        // 최종 프로젝트 테마 관리자
+        var ThemeManager = {
+            themes: {
+                day: {
+                    background: '#ffffff',
+                    color: '#333333',
+                    linkColor: '#1976D2',
+                    buttonBg: '#2196F3',
+                    buttonText: 'Night'
+                },
+                night: {
+                    background: '#1a1a1a',
+                    color: '#e0e0e0',
+                    linkColor: '#4FC3F7',
+                    buttonBg: '#424242',
+                    buttonText: 'Day'
+                }
+            },
+            
+            applyTheme: function(themeName) {
+                var theme = this.themes[themeName];
+                if (!theme) return;
+                
+                var projectArea = document.querySelector('#finalProject');
+                
+                // 프로젝트 영역 스타일 적용
+                projectArea.style.backgroundColor = theme.background;
+                projectArea.style.color = theme.color;
+                projectArea.style.transition = 'all 0.3s ease';
+                
+                // 프로젝트 내 링크 색상 변경
+                var links = projectArea.querySelectorAll('.demo-link');
+                for (var i = 0; i < links.length; i++) {
+                    links[i].style.color = theme.linkColor;
+                }
+                
+                // 프로젝트 내 버튼 업데이트
+                var buttons = projectArea.querySelectorAll('.mode-button');
+                for (var j = 0; j < buttons.length; j++) {
+                    buttons[j].value = theme.buttonText;
+                    buttons[j].style.backgroundColor = theme.buttonBg;
+                    buttons[j].setAttribute('data-current-theme', themeName);
+                }
+                
+                console.log('테마 적용됨:', themeName);
+            },
+            
+            toggle: function(button) {
+                var currentTheme = button.getAttribute('data-current-theme') || 'day';
+                var nextTheme = currentTheme === 'day' ? 'night' : 'day';
+                this.applyTheme(nextTheme);
+                
+                // 사용자 설정 저장 시뮬레이션
+                window.userTheme = nextTheme;
+            }
+        };
+
+        // 고급 실습 함수들 (독립적 설정 관리)
+        var settingsDemo = {
+            savedTheme: 'day',
+            lastSaveTime: null
+        };
+
+        function simulateThemeSave() {
+            // 현재 메인 프로젝트의 테마 상태 확인
+            var currentTheme = document.querySelector('.mode-button').getAttribute('data-current-theme') || 'day';
+            
+            settingsDemo.savedTheme = currentTheme;
+            settingsDemo.lastSaveTime = new Date();
+            
+            var display = document.querySelector('#settingsDisplay');
+            display.innerHTML = 
+                '<strong>✅ 설정 저장 완료</strong><br>' +
+                '• 저장된 테마: ' + settingsDemo.savedTheme + '<br>' +
+                '• 저장 시간: ' + settingsDemo.lastSaveTime.toLocaleTimeString() + '<br>' +
+                '<small>실제로는 localStorage에 저장됩니다.</small>';
+            
+            console.log('설정 저장 시뮬레이션:', settingsDemo.savedTheme);
+        }
+
+        function showCurrentSettings() {
+            var display = document.querySelector('#settingsDisplay');
+            var currentMainTheme = document.querySelector('.mode-button').getAttribute('data-current-theme') || 'day';
+            
+            display.innerHTML = 
+                '<strong>📋 현재 설정 상태</strong><br>' +
+                '• 메인 프로젝트 테마: ' + currentMainTheme + '<br>' +
+                '• 저장된 테마: ' + settingsDemo.savedTheme + '<br>' +
+                '• 마지막 저장: ' + (settingsDemo.lastSaveTime ? settingsDemo.lastSaveTime.toLocaleTimeString() : '없음') + '<br>' +
+                '• 동기화 상태: ' + (currentMainTheme === settingsDemo.savedTheme ? '✅ 일치' : '❌ 불일치');
+        }
+
+        function simulateThemeLoad() {
+            var display = document.querySelector('#settingsDisplay');
+            
+            if (!settingsDemo.lastSaveTime) {
+                display.innerHTML = '<strong>⚠️ 불러올 설정이 없습니다</strong><br>먼저 설정을 저장해주세요.';
+                return;
+            }
+            
+            // 실제로는 저장된 설정으로 테마를 적용하겠지만, 
+            // 여기서는 불러오기 과정만 시뮬레이션
+            display.innerHTML = 
+                '<strong>📥 설정 불러오기 시뮬레이션</strong><br>' +
+                '• 불러온 테마: ' + settingsDemo.savedTheme + '<br>' +
+                '• 저장된 시간: ' + settingsDemo.lastSaveTime.toLocaleTimeString() + '<br>' +
+                '<small>실제로는 이 설정으로 테마가 자동 적용됩니다.</small>';
+            
+            console.log('설정 불러오기 시뮬레이션:', settingsDemo.savedTheme);
+        }
+
+        function resetSettings() {
+            settingsDemo.savedTheme = 'day';
+            settingsDemo.lastSaveTime = null;
+            
+            var display = document.querySelector('#settingsDisplay');
+            display.innerHTML = '<strong>🔄 설정 초기화 완료</strong><br>모든 저장된 설정이 삭제되었습니다.';
+            
+            console.log('설정 초기화 완료');
+        }
+
+        // 페이지 로드 시 기본 설정
+        window.onload = function() {
+            console.log('31강: 최종 프로젝트 페이지가 로드되었습니다.');
+            console.log('모든 JavaScript 기술을 통합한 Night & Day 모드를 체험해보세요.');
+            
+            // 기본 테마 적용
+            ThemeManager.applyTheme('day');
+            
+            var display = document.querySelector('#settingsDisplay');
+            display.innerHTML = '최종 프로젝트가 준비되었습니다. 위의 버튼들을 테스트해보세요!';
+        };
+    </script>
+</body>
+</html>

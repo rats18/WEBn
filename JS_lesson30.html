@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>30강: 속성 제어 - 생활코딩 JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            color: black;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+        }
+        .highlight {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        .practice-area {
+            border: 2px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            background-color: #f8fff9;
+        }
+        .practice-area h3 {
+            color: #155724;
+            margin-top: 0;
+        }
+        .practice-area button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .practice-area button:hover {
+            background-color: #218838;
+        }
+        .practice-area input {
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        a {
+            color: #2980b9;
+        }
+        .demo-box {
+            border: 2px solid #3498db;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: #ecf0f1;
+        }
+        nav {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>30강: 속성 제어</h1>
+            <p><strong>목표:</strong> JavaScript로 HTML 속성을 읽고 변경하는 방법 학습</p>
+            <p><strong>키워드:</strong> getAttribute, setAttribute, removeAttribute, 속성 제어</p>
+        </header>
+
+        <main>
+            <div class="highlight">
+                <strong>🎯 이번 강의의 핵심</strong><br>
+                HTML 요소의 속성(attribute)을 JavaScript로 동적으로 제어하여 더욱 풍부한 사용자 상호작용을 구현합니다.
+            </div>
+
+            <h2>1. HTML 속성(Attribute) 이해</h2>
+            <p style="margin-left: 20px;">HTML 요소는 다양한 속성을 가지며, JavaScript로 이를 읽고 변경할 수 있습니다.</p>
+
+            <h3>1.1 주요 HTML 속성들</h3>
+            <div class="code-block">
+&lt;img src="image.jpg" alt="설명" width="300"&gt;
+&lt;a href="https://example.com" target="_blank"&gt;링크&lt;/a&gt;
+&lt;input type="text" value="기본값" placeholder="입력하세요"&gt;
+&lt;div class="container" id="main"&gt;내용&lt;/div&gt;
+            </div>
+
+            <h2>2. 속성 제어 메서드</h2>
+
+            <h3>2.1 getAttribute() - 속성 값 읽기</h3>
+            <div class="code-block">
+var element = document.querySelector('#myImage');
+var imageSrc = element.getAttribute('src');
+var imageAlt = element.getAttribute('alt');
+console.log('이미지 경로:', imageSrc);
+console.log('대체 텍스트:', imageAlt);
+            </div>
+
+            <h3>2.2 setAttribute() - 속성 값 설정</h3>
+            <div class="code-block">
+var element = document.querySelector('#myImage');
+element.setAttribute('src', 'new-image.jpg');
+element.setAttribute('alt', '새로운 이미지');
+element.setAttribute('width', '400');
+            </div>
+
+            <h3>2.3 removeAttribute() - 속성 제거</h3>
+            <div class="code-block">
+var element = document.querySelector('#myImage');
+element.removeAttribute('width');  // width 속성 제거
+element.removeAttribute('height'); // height 속성 제거
+            </div>
+
+            <div class="practice-area">
+                <h3>🎮 실습 1: 이미지 속성 제어</h3>
+                <p>아래 버튼들을 클릭해서 이미지의 속성을 변경해보세요:</p>
+                <div class="demo-box">
+                    <img id="demoImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150'%3E%3Crect width='200' height='150' fill='%234CAF50'/%3E%3Ctext x='100' y='80' text-anchor='middle' fill='white' font-family='Arial' font-size='16'%3E샘플 이미지%3C/text%3E%3C/svg%3E" alt="원본 이미지" width="200">
+                    <div id="imageInfo" style="background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 3px; font-size: 12px;">
+                        <strong>현재 속성:</strong><br>
+                        width: 200px | alt: "원본 이미지"
+                    </div>
+                    <button onclick="changeImageSize()">크기 변경</button>
+                    <button onclick="changeImageSource()">이미지 변경</button>
+                    <button onclick="changeImageAlt()">설명 변경</button>
+                    <button onclick="resetImage()">원래대로</button>
+                </div>
+            </div>
+
+            <h2>3. 링크 속성 제어</h2>
+
+            <h3>3.1 href 속성 동적 변경</h3>
+            <div class="code-block">
+function changeLink(url, text) {
+    var link = document.querySelector('#dynamicLink');
+    link.setAttribute('href', url);
+    link.textContent = text;
+    link.setAttribute('target', '_blank');
+}
+            </div>
+
+            <div class="practice-area">
+                <h3>🎮 실습 2: 링크 속성 제어</h3>
+                <p>버튼을 클릭해서 링크의 목적지를 변경해보세요:</p>
+                <div class="demo-box">
+                    <a id="dynamicLink" href="#" target="_self">기본 링크</a>
+                    <br><br>
+                    <button onclick="setGoogleLink()">구글로 연결</button>
+                    <button onclick="setNaverLink()">네이버로 연결</button>
+                    <button onclick="setOpentutorialsLink()">생활코딩으로 연결</button>
+                    <button onclick="removeTarget()">현재 탭에서 열기</button>
+                </div>
+            </div>
+
+            <h2>4. 폼(Form) 속성 제어</h2>
+
+            <h3>4.1 입력 필드 속성 제어</h3>
+            <div class="code-block">
+function setInputAttributes() {
+    var input = document.querySelector('#userInput');
+    input.setAttribute('placeholder', '새로운 힌트 텍스트');
+    input.setAttribute('maxlength', '10');
+    input.setAttribute('required', 'true');
+}
+            </div>
+
+            <div class="practice-area">
+                <h3>🎮 실습 3: 입력 필드 속성 제어</h3>
+                <p>입력 필드의 다양한 속성을 변경해보세요:</p>
+                <div class="demo-box">
+                    <input type="text" id="testInput" placeholder="여기에 입력하세요" value="">
+                    <br><br>
+                    <button onclick="setPlaceholder()">힌트 변경</button>
+                    <button onclick="setMaxLength()">최대 길이 설정</button>
+                    <button onclick="setRequired()">필수 입력 설정</button>
+                    <button onclick="setDisabled()">비활성화</button>
+                    <button onclick="resetInput()">원래대로</button>
+                </div>
+            </div>
+
+            <h2>5. 속성 제어의 실무 활용</h2>
+
+            <h3>5.1 동적 메뉴 시스템</h3>
+            <p style="margin-left: 20px;">사용자 권한에 따라 링크의 href 속성을 동적으로 설정하거나 제거</p>
+
+            <h3>5.2 이미지 갤러리</h3>
+            <p style="margin-left: 20px;">썸네일 클릭 시 큰 이미지의 src 속성을 변경하여 이미지 전환</p>
+
+            <h3>5.3 폼 유효성 검사</h3>
+            <p style="margin-left: 20px;">사용자 입력에 따라 required, pattern 등의 속성을 동적 설정</p>
+
+            <div class="practice-area">
+                <h3>🎮 실습 4: 동적 이미지 갤러리</h3>
+                <p>썸네일을 클릭해서 큰 이미지를 변경해보세요:</p>
+                <div class="demo-box">
+                    <div style="text-align: center;">
+                        <img id="mainImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect width='300' height='200' fill='%23FF6B6B'/%3E%3Ctext x='150' y='110' text-anchor='middle' fill='white' font-family='Arial' font-size='20'%3E이미지 1%3C/text%3E%3C/svg%3E" alt="메인 이미지" width="300">
+                        <br><br>
+                        <strong>썸네일:</strong><br>
+                        <img onclick="changeMainImage(1)" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='60'%3E%3Crect width='80' height='60' fill='%23FF6B6B'/%3E%3Ctext x='40' y='35' text-anchor='middle' fill='white' font-family='Arial' font-size='12'%3E1%3C/text%3E%3C/svg%3E" style="cursor: pointer; margin: 5px; border: 2px solid #ddd;">
+                        <img onclick="changeMainImage(2)" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='60'%3E%3Crect width='80' height='60' fill='%234ECDC4'/%3E%3Ctext x='40' y='35' text-anchor='middle' fill='white' font-family='Arial' font-size='12'%3E2%3C/text%3E%3C/svg%3E" style="cursor: pointer; margin: 5px; border: 2px solid #ddd;">
+                        <img onclick="changeMainImage(3)" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='60'%3E%3Crect width='80' height='60' fill='%2345B7D1'/%3E%3Ctext x='40' y='35' text-anchor='middle' fill='white' font-family='Arial' font-size='12'%3E3%3C/text%3E%3C/svg%3E" style="cursor: pointer; margin: 5px; border: 2px solid #ddd;">
+                    </div>
+                </div>
+            </div>
+
+            <h2>6. 속성 vs 프로퍼티 차이점</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>HTML 속성 (Attribute)</th>
+                        <th>DOM 프로퍼티 (Property)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>접근 방법</strong></td>
+                        <td>getAttribute(), setAttribute()</td>
+                        <td>element.property 형태</td>
+                    </tr>
+                    <tr>
+                        <td><strong>데이터 타입</strong></td>
+                        <td>항상 문자열</td>
+                        <td>실제 데이터 타입</td>
+                    </tr>
+                    <tr>
+                        <td><strong>예시</strong></td>
+                        <td>element.getAttribute('checked')</td>
+                        <td>element.checked</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HTML 반영</strong></td>
+                        <td>HTML 코드에 바로 반영</td>
+                        <td>DOM에서만 변경</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>6.1 실제 사용 예시</h3>
+            <div class="code-block">
+// 속성 방식 (문자열)
+element.setAttribute('checked', 'true');
+var isChecked = element.getAttribute('checked'); // "true" (문자열)
+
+// 프로퍼티 방식 (불린)
+element.checked = true;
+var isChecked = element.checked; // true (불린값)
+            </div>
+
+            <div class="practice-area">
+                <h3>🎮 실습 5: 속성 vs 프로퍼티 비교</h3>
+                <p>체크박스의 속성과 프로퍼티를 비교해보세요:</p>
+                <div class="demo-box">
+                    <input type="checkbox" id="compareCheckbox"> 체크박스
+                    <br><br>
+                    <button onclick="checkWithAttribute()">속성으로 체크</button>
+                    <button onclick="checkWithProperty()">프로퍼티로 체크</button>
+                    <button onclick="showValues()">값 확인</button>
+                    <button onclick="resetCheckbox()">초기화</button>
+                    <br><br>
+                    <div id="valueDisplay" style="background: #f0f0f0; padding: 10px; margin-top: 10px; border-radius: 3px;">
+                        여기에 값이 표시됩니다.
+                    </div>
+                </div>
+            </div>
+
+            <h2>7. 다음 단계 예고</h2>
+            <p style="margin-left: 20px;">속성 제어를 마스터했다면, 다음 강의에서는 <strong>최종 프로젝트</strong>를 통해 지금까지 학습한 모든 내용을 통합하여 완전한 Night & Day 모드 시스템을 구현할 예정입니다.</p>
+
+            <h2>8. 핵심 가치</h2>
+            <p style="margin-left: 20px;"><strong>"HTML 속성 제어는 웹페이지의 모든 요소를 동적으로 조작할 수 있게 해주는 핵심 기술로, 사용자 경험을 크게 향상시킵니다"</strong></p>
+
+            <p style="margin-left: 40px;">단순한 스타일 변경을 넘어서 링크 목적지, 이미지 소스, 폼 필드 속성 등을 자유자재로 제어하여 진정한 동적 웹사이트를 만들 수 있게 되었습니다!</p>
+        </main>
+    </div>
+
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson29.html">← 이전 강의</a> | 
+        <a href="JS_lesson31.html">다음 강의 →</a>
+    </nav>
+
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 30강: 속성 제어</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://youtu.be/2j04s1erzTs?si=ReTAON3ftq0oeDDE" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+
+    <script>
+        // 실습 1: 이미지 속성 제어
+        function updateImageInfo() {
+            var img = document.querySelector('#demoImage');
+            var info = document.querySelector('#imageInfo');
+            var width = img.getAttribute('width');
+            var alt = img.getAttribute('alt');
+            info.innerHTML = '<strong>현재 속성:</strong><br>width: ' + width + 'px | alt: "' + alt + '"';
+        }
+
+        function changeImageSize() {
+            var img = document.querySelector('#demoImage');
+            var currentWidth = img.getAttribute('width');
+            var newWidth = currentWidth === '200' ? '300' : '200';
+            img.setAttribute('width', newWidth);
+            updateImageInfo();
+            console.log('이미지 크기 변경: ' + newWidth + 'px');
+        }
+
+        function changeImageSource() {
+            var img = document.querySelector('#demoImage');
+            var currentSrc = img.getAttribute('src');
+            if (currentSrc.includes('4CAF50')) {
+                img.setAttribute('src', "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150'%3E%3Crect width='200' height='150' fill='%23FF5722'/%3E%3Ctext x='100' y='80' text-anchor='middle' fill='white' font-family='Arial' font-size='16'%3E변경된 이미지%3C/text%3E%3C/svg%3E");
+            } else {
+                img.setAttribute('src', "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150'%3E%3Crect width='200' height='150' fill='%234CAF50'/%3E%3Ctext x='100' y='80' text-anchor='middle' fill='white' font-family='Arial' font-size='16'%3E샘플 이미지%3C/text%3E%3C/svg%3E");
+            }
+            updateImageInfo();
+        }
+
+        function changeImageAlt() {
+            var img = document.querySelector('#demoImage');
+            var currentAlt = img.getAttribute('alt');
+            var newAlt = currentAlt === '원본 이미지' ? '수정된 설명' : '원본 이미지';
+            img.setAttribute('alt', newAlt);
+            updateImageInfo();
+            
+            // 사용자에게 변경 내용을 알림
+            alert('이미지 설명이 "' + newAlt + '"로 변경되었습니다!\n(마우스를 이미지에 올려보세요)');
+            console.log('이미지 설명 변경: ' + newAlt);
+        }
+
+        function resetImage() {
+            var img = document.querySelector('#demoImage');
+            img.setAttribute('src', "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150'%3E%3Crect width='200' height='150' fill='%234CAF50'/%3E%3Ctext x='100' y='80' text-anchor='middle' fill='white' font-family='Arial' font-size='16'%3E샘플 이미지%3C/text%3E%3C/svg%3E");
+            img.setAttribute('alt', '원본 이미지');
+            img.setAttribute('width', '200');
+            updateImageInfo();
+            console.log('이미지 초기화 완료');
+        }
+
+        // 실습 2: 링크 속성 제어
+        function setGoogleLink() {
+            var link = document.querySelector('#dynamicLink');
+            link.setAttribute('href', 'https://www.google.com');
+            link.setAttribute('target', '_blank');
+            link.textContent = '구글 (새 탭에서 열기)';
+        }
+
+        function setNaverLink() {
+            var link = document.querySelector('#dynamicLink');
+            link.setAttribute('href', 'https://www.naver.com');
+            link.setAttribute('target', '_blank');
+            link.textContent = '네이버 (새 탭에서 열기)';
+        }
+
+        function setOpentutorialsLink() {
+            var link = document.querySelector('#dynamicLink');
+            link.setAttribute('href', 'https://opentutorials.org');
+            link.setAttribute('target', '_blank');
+            link.textContent = '생활코딩 (새 탭에서 열기)';
+        }
+
+        function removeTarget() {
+            var link = document.querySelector('#dynamicLink');
+            link.removeAttribute('target');
+            link.textContent = link.textContent.replace(' (새 탭에서 열기)', ' (현재 탭에서 열기)');
+        }
+
+        // 실습 3: 입력 필드 속성 제어
+        function setPlaceholder() {
+            var input = document.querySelector('#testInput');
+            input.setAttribute('placeholder', '새로운 힌트 텍스트입니다');
+        }
+
+        function setMaxLength() {
+            var input = document.querySelector('#testInput');
+            input.setAttribute('maxlength', '10');
+            console.log('최대 입력 길이: 10자로 제한됨');
+        }
+
+        function setRequired() {
+            var input = document.querySelector('#testInput');
+            input.setAttribute('required', 'true');
+            input.style.borderColor = '#e74c3c';
+            console.log('필수 입력 필드로 설정됨');
+        }
+
+        function setDisabled() {
+            var input = document.querySelector('#testInput');
+            var isDisabled = input.getAttribute('disabled');
+            if (isDisabled) {
+                input.removeAttribute('disabled');
+                console.log('입력 필드 활성화됨');
+            } else {
+                input.setAttribute('disabled', 'true');
+                console.log('입력 필드 비활성화됨');
+            }
+        }
+
+        function resetInput() {
+            var input = document.querySelector('#testInput');
+            input.setAttribute('placeholder', '여기에 입력하세요');
+            input.removeAttribute('maxlength');
+            input.removeAttribute('required');
+            input.removeAttribute('disabled');
+            input.style.borderColor = '#ccc';
+            input.value = '';
+            console.log('입력 필드 초기화 완료');
+        }
+
+        // 실습 4: 동적 이미지 갤러리
+        function changeMainImage(imageNumber) {
+            var mainImg = document.querySelector('#mainImage');
+            var colors = ['%23FF6B6B', '%234ECDC4', '%2345B7D1'];
+            var colorName = ['빨간색', '청록색', '파란색'];
+            
+            var newSrc = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect width='300' height='200' fill='" + colors[imageNumber-1] + "'/%3E%3Ctext x='150' y='110' text-anchor='middle' fill='white' font-family='Arial' font-size='20'%3E이미지 " + imageNumber + "%3C/text%3E%3C/svg%3E";
+            
+            mainImg.setAttribute('src', newSrc);
+            mainImg.setAttribute('alt', colorName[imageNumber-1] + ' 이미지');
+            console.log('메인 이미지를 ' + colorName[imageNumber-1] + '으로 변경');
+        }
+
+        // 실습 5: 속성 vs 프로퍼티 비교
+        function checkWithAttribute() {
+            var checkbox = document.querySelector('#compareCheckbox');
+            checkbox.setAttribute('checked', 'true');
+            console.log('속성으로 체크박스 선택');
+        }
+
+        function checkWithProperty() {
+            var checkbox = document.querySelector('#compareCheckbox');
+            checkbox.checked = true;
+            console.log('프로퍼티로 체크박스 선택');
+        }
+
+        function showValues() {
+            var checkbox = document.querySelector('#compareCheckbox');
+            var display = document.querySelector('#valueDisplay');
+            
+            var attributeValue = checkbox.getAttribute('checked');
+            var propertyValue = checkbox.checked;
+            
+            display.innerHTML = 
+                '<strong>속성 값:</strong> ' + (attributeValue === null ? 'null' : '"' + attributeValue + '"') + ' (타입: ' + typeof attributeValue + ')<br>' +
+                '<strong>프로퍼티 값:</strong> ' + propertyValue + ' (타입: ' + typeof propertyValue + ')';
+        }
+
+        function resetCheckbox() {
+            var checkbox = document.querySelector('#compareCheckbox');
+            var display = document.querySelector('#valueDisplay');
+            checkbox.checked = false;
+            checkbox.removeAttribute('checked');
+            display.innerHTML = '여기에 값이 표시됩니다.';
+            console.log('체크박스 초기화');
+        }
+
+        // 페이지 로드 시 안내
+        window.onload = function() {
+            console.log('30강: 속성 제어 학습 페이지가 로드되었습니다.');
+            console.log('HTML 속성을 JavaScript로 제어하는 방법을 학습해보세요.');
+        };
+    </script>
+</body>
+</html>

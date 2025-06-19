@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>33강: 배열 활용한 다중 요소 처리 - 생활코딩 JavaScript</title>
+</head>
+<body>
+    <h1>33강: 배열 활용한 다중 요소 처리</h1>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>📺 강의 영상:</strong> 
+        <a href="https://youtu.be/JNaX6EG9-FI?si=wXTbmgxkSnbDsXPD" target="_blank">
+            생활코딩 - 33강: 배열 활용한 다중 요소 처리 (새 탭에서 열기)
+        </a>
+    </div>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson32.html">← 이전 강의</a> | 
+        <a href="JS_lesson34.html">다음 강의 →</a>
+    </nav>
+    
+    <main>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">1. 학습 목표</h2>
+        <ul style="margin-left: 40px;">
+            <li>배열과 반복문을 활용하여 여러 링크를 효율적으로 제어</li>
+            <li>Night & Day 모드에서 모든 링크의 색상을 일괄 변경</li>
+            <li>프로젝트 완성도를 높이는 고급 기능 구현</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">2. querySelectorAll로 다중 요소 선택</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.1 기본 사용법</h3>
+        <p style="margin-left: 40px;">var alist = document.querySelectorAll('a');</p>
+        <p style="margin-left: 40px;">console.log(alist.length); // 전체 링크 개수 확인</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.2 querySelector vs querySelectorAll</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>querySelector()</strong>: 첫 번째 요소만 반환</li>
+            <li><strong>querySelectorAll()</strong>: 모든 해당 요소를 NodeList로 반환</li>
+            <li>NodeList는 배열처럼 인덱스와 length 속성 사용 가능</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">3. 반복문으로 모든 링크 제어</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.1 기본 반복 구조</h3>
+        <p style="margin-left: 40px;">var alist = document.querySelectorAll('a');</p>
+        <p style="margin-left: 40px;">var i = 0;</p>
+        <p style="margin-left: 40px;">while (i < alist.length) {</p>
+        <p style="margin-left: 60px;">alist[i].style.color = 'powderblue';</p>
+        <p style="margin-left: 60px;">i = i + 1;</p>
+        <p style="margin-left: 40px;">}</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.2 Night & Day 모드 통합</h3>
+        <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 40px;">
+            <p><strong>Night 모드 링크 처리:</strong></p>
+            <pre style="margin: 0;">function nightMode(self) {
+    var target = document.querySelector('body');
+    var alist = document.querySelectorAll('a');
+    var i = 0;
+    
+    if (self.value === 'night') {
+        target.style.backgroundColor = 'black';
+        target.style.color = 'white';
+        self.value = 'day';
+        
+        while (i < alist.length) {
+            alist[i].style.color = 'powderblue';
+            i = i + 1;
+        }
+    } else {
+        target.style.backgroundColor = 'white';
+        target.style.color = 'black';
+        self.value = 'night';
+        
+        while (i < alist.length) {
+            alist[i].style.color = 'blue';
+            i = i + 1;
+        }
+    }
+}</pre>
+        </div>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">4. 실습 - 배열 활용 다중 요소 제어</h2>
+        
+        <div style="background-color: #fff3cd; padding: 15px; border-radius: 5px; margin: 20px 0;" class="practice-section">
+            <h3 style="margin-top: 0;">실습 4.1: 기본 링크 색상 변경</h3>
+            <p>아래 링크들의 색상을 일괄적으로 변경해보세요:</p>
+            <div style="margin: 15px 0;">
+                <a href="#" id="link1">첫 번째 링크</a> | 
+                <a href="#" id="link2">두 번째 링크</a> | 
+                <a href="#" id="link3">세 번째 링크</a>
+            </div>
+            <button onclick="changeAllLinks('red')">빨간색으로 변경</button>
+            <button onclick="changeAllLinks('blue')">파란색으로 변경</button>
+            <button onclick="changeAllLinks('green')">초록색으로 변경</button>
+            
+            <script>
+                function changeAllLinks(color) {
+                    var links = document.querySelectorAll('#link1, #link2, #link3');
+                    var i = 0;
+                    while (i < links.length) {
+                        links[i].style.color = color;
+                        i = i + 1;
+                    }
+                }
+            </script>
+        </div>
+        
+        <div style="background-color: #d1ecf1; padding: 15px; border-radius: 5px; margin: 20px 0;" class="practice-section">
+            <h3 style="margin-top: 0;">실습 4.2: 고급 링크 스타일링</h3>
+            <p>배열을 활용해 링크들에 다양한 스타일을 적용해보세요:</p>
+            <div style="margin: 15px 0;">
+                <a href="#" class="demo-link">홈</a> | 
+                <a href="#" class="demo-link">소개</a> | 
+                <a href="#" class="demo-link">서비스</a> | 
+                <a href="#" class="demo-link">연락처</a>
+            </div>
+            <button onclick="applyHoverEffect()">호버 효과 적용</button>
+            <button onclick="removeStyles()">스타일 초기화</button>
+            
+            <script>
+                function applyHoverEffect() {
+                    var links = document.querySelectorAll('.demo-link');
+                    var i = 0;
+                    while (i < links.length) {
+                        links[i].style.textDecoration = 'none';
+                        links[i].style.padding = '5px 10px';
+                        links[i].style.backgroundColor = '#e9ecef';
+                        links[i].style.borderRadius = '3px';
+                        links[i].style.margin = '0 2px';
+                        i = i + 1;
+                    }
+                }
+                
+                function removeStyles() {
+                    var links = document.querySelectorAll('.demo-link');
+                    var i = 0;
+                    while (i < links.length) {
+                        links[i].style.textDecoration = '';
+                        links[i].style.padding = '';
+                        links[i].style.backgroundColor = '';
+                        links[i].style.borderRadius = '';
+                        links[i].style.margin = '';
+                        links[i].style.color = '';
+                        i = i + 1;
+                    }
+                }
+            </script>
+        </div>
+        
+        <div style="background-color: #d4edda; padding: 15px; border-radius: 5px; margin: 20px 0;" class="practice-section">
+            <h3 style="margin-top: 0;">실습 4.3: 통합 Night & Day 모드</h3>
+            <p>배열을 활용한 완전한 테마 전환 시스템:</p>
+            <div style="margin: 15px 0; padding: 10px; border: 1px solid #ccc;" id="theme-demo">
+                <h4>테마 적용 영역</h4>
+                <p>이 영역의 배경색과 모든 링크 색상이 함께 변경됩니다.</p>
+                <a href="#" class="theme-link">메뉴 1</a> | 
+                <a href="#" class="theme-link">메뉴 2</a> | 
+                <a href="#" class="theme-link">메뉴 3</a>
+            </div>
+            <input type="button" value="night" onclick="toggleTheme(this)" style="padding: 8px 15px;">
+            
+            <script>
+                function toggleTheme(self) {
+                    var target = document.querySelector('#theme-demo');
+                    var links = document.querySelectorAll('.theme-link');
+                    var i = 0;
+                    
+                    if (self.value === 'night') {
+                        target.style.backgroundColor = 'black';
+                        target.style.color = 'white';
+                        self.value = 'day';
+                        
+                        while (i < links.length) {
+                            links[i].style.color = 'powderblue';
+                            i = i + 1;
+                        }
+                    } else {
+                        target.style.backgroundColor = 'white';
+                        target.style.color = 'black';
+                        self.value = 'night';
+                        
+                        while (i < links.length) {
+                            links[i].style.color = 'blue';
+                            i = i + 1;
+                        }
+                    }
+                }
+            </script>
+        </div>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">5. 배열 활용의 핵심 가치</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.1 확장성 (Scalability)</h3>
+        <ul style="margin-left: 40px;">
+            <li>링크 개수가 늘어나도 코드 수정 불필요</li>
+            <li>1개든 1억개든 동일한 코드로 처리</li>
+            <li>새로운 링크 추가 시 자동으로 적용</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.2 유지보수성 (Maintainability)</h3>
+        <ul style="margin-left: 40px;">
+            <li>중복 코드 제거로 버그 발생 가능성 감소</li>
+            <li>스타일 변경 시 한 곳만 수정하면 모든 요소에 적용</li>
+            <li>코드 구조가 명확하고 이해하기 쉬움</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.3 성능 최적화</h3>
+        <ul style="margin-left: 40px;">
+            <li>DOM 선택을 한 번만 수행</li>
+            <li>효율적인 반복 처리</li>
+            <li>브라우저 리소스 절약</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">6. CSS 선택자 활용 확장</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">6.1 다양한 선택자 패턴</h3>
+        <p style="margin-left: 40px;">document.querySelectorAll('a')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 모든 a 태그</p>
+        <p style="margin-left: 40px;">document.querySelectorAll('.nav-link')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 클래스 선택</p>
+        <p style="margin-left: 40px;">document.querySelectorAll('nav a')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 자손 선택</p>
+        <p style="margin-left: 40px;">document.querySelectorAll('a[href^="http"]')&nbsp;&nbsp;// 속성 선택</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">6.2 정밀한 타겟팅</h3>
+        <ul style="margin-left: 40px;">
+            <li>CSS 선택자 지식을 JavaScript에서 활용</li>
+            <li>원하는 요소들만 정확히 선택</li>
+            <li>복잡한 선택자도 자유롭게 사용</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">7. 실무 적용 패턴</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">7.1 테마 시스템</h3>
+        <ul style="margin-left: 40px;">
+            <li>다크 모드 / 라이트 모드 전환</li>
+            <li>모든 UI 요소 일괄 스타일링</li>
+            <li>사용자 설정 저장 및 복원</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">7.2 동적 메뉴 관리</h3>
+        <ul style="margin-left: 40px;">
+            <li>네비게이션 메뉴 활성화 상태 관리</li>
+            <li>메뉴 항목 숨김/표시 제어</li>
+            <li>반응형 메뉴 동작 구현</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">7.3 대량 데이터 처리</h3>
+        <ul style="margin-left: 40px;">
+            <li>게시물 목록 일괄 스타일링</li>
+            <li>상품 카드 디자인 변경</li>
+            <li>테이블 행/열 조작</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">8. 성능 고려사항</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">8.1 효율적인 DOM 접근</h3>
+        <p style="margin-left: 40px;">// 좋은 방법: 변수에 저장하여 재사용</p>
+        <p style="margin-left: 40px;">var links = document.querySelectorAll('a');</p>
+        <p style="margin-left: 40px;">while (i < links.length) { ... }</p>
+        <br>
+        <p style="margin-left: 40px;">// 나쁜 방법: 매번 DOM 탐색</p>
+        <p style="margin-left: 40px;">while (i < document.querySelectorAll('a').length) { ... }</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">8.2 반복문 최적화</h3>
+        <ul style="margin-left: 40px;">
+            <li>필요한 요소만 선택하여 불필요한 작업 방지</li>
+            <li>반복문 내부에서 복잡한 연산 최소화</li>
+            <li>가능한 경우 CSS 클래스 활용</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">9. 다음 단계 예고</h2>
+        <p style="margin-left: 20px;">배열을 활용한 다중 요소 처리를 마스터했다면, 다음 강의에서는 <strong>객체를 활용한 코드 정리</strong>를 통해 더욱 체계적이고 관리하기 쉬운 코드 구조를 학습하겠습니다.</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">10. 핵심 가치</h2>
+        <p style="margin-left: 20px;"><strong>"배열과 반복문의 조합으로 1개든 1억개든 동일한 코드로 처리하는 확장 가능한 프로그래밍의 힘"</strong></p>
+        
+        <p style="margin-left: 40px;">이제 정적인 하드코딩에서 벗어나 동적이고 유연한 웹페이지 제어가 가능해졌습니다. 프로젝트의 완성도가 한층 더 높아졌습니다!</p>
+    </main>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson32.html">← 이전 강의</a> | 
+        <a href="JS_lesson34.html">다음 강의 →</a>
+    </nav>
+    
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 33강: 배열 활용한 다중 요소 처리</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>26강: 파일로 쪼개기 - 생활코딩 JavaScript</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        h3 {
+            color: #7f8c8d;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        code {
+            background-color: #f8f9fa;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 4px solid #3498db;
+        }
+        
+        .demo-box {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border: 1px solid #3498db;
+        }
+        
+        .demo-box h4 {
+            margin-top: 0;
+            color: #2980b9;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .file-demo {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 3px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .file-name {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .code-section {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .function { color: #dcdcaa; }
+        .comment { color: #6a9955; }
+    </style>
+</head>
+<body>
+    <h1>26강: 파일로 쪼개기</h1>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>📺 강의 영상:</strong> 
+        <a href="https://youtu.be/MXf9UqMXuGM?si=_3Sqba0rb5oHjvZR" target="_blank">
+            생활코딩 - 26강: 파일로 쪼개기 (새 탭에서 열기)
+        </a>
+    </div>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson25.html">← 이전 강의</a> | 
+        <a href="JS_lesson27.html">다음 강의 →</a>
+    </nav>
+    
+    <main>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">1. 코드 분리의 필요성</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">1.1 하나의 파일에 모든 코드가 있을 때의 문제점</h3>
+        <div style="margin-left: 40px;">
+            <p><strong>현재 상황</strong>: HTML 파일 안에 모든 JavaScript 코드가 섞여 있음</p>
+            <ul>
+                <li>코드가 길어질수록 관리가 어려워짐</li>
+                <li>HTML과 JavaScript가 뒤섞여 가독성이 떨어짐</li>
+                <li>동일한 JavaScript 코드를 여러 HTML 파일에서 재사용하기 어려움</li>
+                <li>코드 수정 시 여러 곳을 찾아다니며 수정해야 함</li>
+            </ul>
+        </div>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">1.2 파일 분리의 장점</h3>
+        <div style="margin-left: 40px;">
+            <ul>
+                <li><strong>재사용성</strong>: 한 번 작성한 JavaScript를 여러 HTML에서 사용</li>
+                <li><strong>유지보수성</strong>: 기능별로 파일을 나누어 관리 용이</li>
+                <li><strong>가독성</strong>: HTML과 JavaScript의 명확한 분리</li>
+                <li><strong>협업</strong>: 팀원들이 각자 담당 파일을 독립적으로 작업 가능</li>
+            </ul>
+        </div>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">2. 외부 JavaScript 파일 사용법</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.1 script 태그의 src 속성</h3>
+        <div style="margin-left: 40px;">
+            <p><code>&lt;script src="파일경로"&gt;&lt;/script&gt;</code> 형태로 외부 JavaScript 파일을 연결</p>
+            
+            <div class="code-section">
+<span class="comment"><!-- HTML 파일 --></span>
+<span class="keyword">&lt;script</span> <span class="string">src="script.js"</span><span class="keyword">&gt;&lt;/script&gt;</span>
+            </div>
+        </div>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.2 실습: 파일 분리하기</h3>
+        <div style="margin-left: 40px;">
+            <p>Night & Day 모드 코드를 별도 파일로 분리해보겠습니다.</p>
+            
+            <div class="demo-box">
+                <h4>📁 현재 프로젝트 구조</h4>
+                <div class="file-demo">
+                    <div><span class="file-name">📄 index.html</span> (모든 코드가 섞여 있음)</div>
+                </div>
+                
+                <h4>📁 분리 후 프로젝트 구조</h4>
+                <div class="file-demo">
+                    <div><span class="file-name">📄 index.html</span> (HTML 구조만)</div>
+                    <div><span class="file-name">📄 colors.js</span> (Night & Day 기능)</div>
+                </div>
+            </div>
+        </div>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">3. 실습: colors.js 파일 만들기</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.1 JavaScript 파일 생성</h3>
+        <div style="margin-left: 40px;">
+            <p><strong>colors.js</strong> 파일에 들어갈 내용:</p>
+            
+            <div class="code-section">
+<span class="comment">// colors.js 파일</span>
+<span class="keyword">var</span> <span class="function">Body</span> = {
+    <span class="function">setColor</span>: <span class="keyword">function</span>(color) {
+        <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">'body'</span>).<span class="function">style</span>.<span class="function">color</span> = color;
+    },
+    <span class="function">setBackgroundColor</span>: <span class="keyword">function</span>(color) {
+        <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">'body'</span>).<span class="function">style</span>.<span class="function">backgroundColor</span> = color;
+    }
+}
+
+<span class="keyword">var</span> <span class="function">Links</span> = {
+    <span class="function">setColor</span>: <span class="keyword">function</span>(color) {
+        <span class="keyword">var</span> alist = <span class="keyword">document</span>.<span class="function">querySelectorAll</span>(<span class="string">'a'</span>);
+        <span class="keyword">var</span> i = <span class="string">0</span>;
+        <span class="keyword">while</span>(i &lt; alist.<span class="function">length</span>) {
+            alist[i].<span class="function">style</span>.<span class="function">color</span> = color;
+            i = i + <span class="string">1</span>;
+        }
+    }
+}
+
+<span class="keyword">function</span> <span class="function">nightDayHandler</span>(self) {
+    <span class="keyword">if</span>(self.<span class="function">value</span> === <span class="string">'night'</span>) {
+        <span class="function">Body</span>.<span class="function">setBackgroundColor</span>(<span class="string">'black'</span>);
+        <span class="function">Body</span>.<span class="function">setColor</span>(<span class="string">'white'</span>);
+        <span class="function">Links</span>.<span class="function">setColor</span>(<span class="string">'powderblue'</span>);
+        self.<span class="function">value</span> = <span class="string">'day'</span>;
+    } <span class="keyword">else</span> {
+        <span class="function">Body</span>.<span class="function">setBackgroundColor</span>(<span class="string">'white'</span>);
+        <span class="function">Body</span>.<span class="function">setColor</span>(<span class="string">'black'</span>);
+        <span class="function">Links</span>.<span class="function">setColor</span>(<span class="string">'blue'</span>);
+        self.<span class="function">value</span> = <span class="string">'night'</span>;
+    }
+}
+            </div>
+        </div>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.2 HTML에서 외부 파일 연결</h3>
+        <div style="margin-left: 40px;">
+            <p><strong>index.html</strong> 파일의 변화:</p>
+            
+            <div class="code-section">
+<span class="comment">&lt;!-- 기존: 모든 코드가 HTML 안에 --&gt;</span>
+<span class="keyword">&lt;script&gt;</span>
+    <span class="comment">// 수십 줄의 JavaScript 코드...</span>
+<span class="keyword">&lt;/script&gt;</span>
+
+<span class="comment">&lt;!-- 변경: 외부 파일 연결 --&gt;</span>
+<span class="keyword">&lt;script</span> <span class="string">src="colors.js"</span><span class="keyword">&gt;&lt;/script&gt;</span>
+            </div>
+        </div>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">4. 실습: 파일 분리 체험하기</h2>
+        
+        <div class="demo-box">
+            <h4>🔧 파일 분리 시뮬레이션</h4>
+            <p>아래 버튼들로 파일 분리 전후의 차이를 체험해보세요:</p>
+            
+            <div style="margin: 15px 0;">
+                <h5>📄 현재 HTML 내 JavaScript (분리 전)</h5>
+                <div id="before-separation" style="background-color: #fff3cd; padding: 10px; border-radius: 3px; font-family: monospace; font-size: 0.8em;">
+                    &lt;script&gt;<br>
+                    &nbsp;&nbsp;// Night & Day 기능 코드 (50줄)<br>
+                    &nbsp;&nbsp;// 다른 기능 코드 (30줄)<br>
+                    &nbsp;&nbsp;// 또 다른 기능 코드 (40줄)<br>
+                    &nbsp;&nbsp;// 총 120줄의 JavaScript가 HTML에 섞여 있음<br>
+                    &lt;/script&gt;
+                </div>
+                
+                <button onclick="showFileSeparation()">파일 분리하기</button>
+                <button onclick="showFileIntegration()">원래대로 합치기</button>
+            </div>
+            
+            <div id="after-separation" style="display: none;">
+                <h5>📁 분리된 파일 구조</h5>
+                <div style="background-color: #d1edff; padding: 10px; border-radius: 3px; font-family: monospace; font-size: 0.8em;">
+                    📄 <strong>index.html</strong><br>
+                    &nbsp;&nbsp;&lt;script src="colors.js"&gt;&lt;/script&gt;<br>
+                    &nbsp;&nbsp;&lt;script src="utils.js"&gt;&lt;/script&gt;<br>
+                    &nbsp;&nbsp;&lt;script src="effects.js"&gt;&lt;/script&gt;<br><br>
+                    
+                    📄 <strong>colors.js</strong> (Night & Day 기능만 50줄)<br>
+                    📄 <strong>utils.js</strong> (유틸리티 함수들 30줄)<br>
+                    📄 <strong>effects.js</strong> (시각 효과들 40줄)
+                </div>
+                <p style="color: #28a745; font-weight: bold;">✅ 각 파일이 명확한 역할을 가지게 됨!</p>
+            </div>
+            
+            <script>
+                function showFileSeparation() {
+                    document.getElementById('before-separation').style.display = 'none';
+                    document.getElementById('after-separation').style.display = 'block';
+                }
+                
+                function showFileIntegration() {
+                    document.getElementById('before-separation').style.display = 'block';
+                    document.getElementById('after-separation').style.display = 'none';
+                }
+            </script>
+        </div>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">5. 파일 경로 이해하기</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.1 상대 경로와 절대 경로</h3>
+        <div style="margin-left: 40px;">
+            <p><strong>상대 경로</strong> (같은 폴더 내):</p>
+            <div class="code-section">
+<span class="keyword">&lt;script</span> <span class="string">src="colors.js"</span><span class="keyword">&gt;&lt;/script&gt;</span>
+            </div>
+            
+            <p><strong>하위 폴더</strong>:</p>
+            <div class="code-section">
+<span class="keyword">&lt;script</span> <span class="string">src="js/colors.js"</span><span class="keyword">&gt;&lt;/script&gt;</span>
+            </div>
+            
+            <p><strong>상위 폴더</strong>:</p>
+            <div class="code-section">
+<span class="keyword">&lt;script</span> <span class="string">src="../js/colors.js"</span><span class="keyword">&gt;&lt;/script&gt;</span>
+            </div>
+        </div>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.2 파일 경로 실습</h3>
+        <div style="margin-left: 40px;">
+            <div class="demo-box">
+                <h4>📁 프로젝트 폴더 구조 예시</h4>
+                <div class="file-demo">
+                    website/<br>
+                    ├── index.html<br>
+                    ├── about.html<br>
+                    ├── js/<br>
+                    │&nbsp;&nbsp;&nbsp;├── colors.js<br>
+                    │&nbsp;&nbsp;&nbsp;└── utils.js<br>
+                    └── css/<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;└── style.css
+                </div>
+                
+                <p><strong>index.html에서 colors.js 연결하기:</strong></p>
+                <div class="code-section">
+<span class="keyword">&lt;script</span> <span class="string">src="js/colors.js"</span><span class="keyword">&gt;&lt;/script&gt;</span>
+                </div>
+            </div>
+        </div>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">6. 실습: 작동하는 Night & Day 모드</h2>
+        
+        <div class="demo-box">
+            <h4>🌙 Night & Day 모드 (외부 파일 버전)</h4>
+            <p>아래는 외부 JavaScript 파일을 사용하는 것처럼 구현된 Night & Day 모드입니다:</p>
+            
+            <div id="demo-content" style="padding: 20px; border: 1px solid #ddd; border-radius: 5px; transition: all 0.3s;">
+                <h5>웹 페이지 콘텐츠</h5>
+                <p>이 내용은 Night 모드와 Day 모드로 전환할 수 있습니다.</p>
+                <p><a href="#" id="demo-link">링크 예시</a></p>
+                
+                <input type="button" value="night" onclick="demoNightDayHandler(this)" 
+                       style="background-color: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+            </div>
+            
+            <div style="margin-top: 15px; padding: 10px; background-color: #f8f9fa; border-radius: 3px;">
+                <strong>💡 이 기능은 다음과 같이 구현됩니다:</strong><br>
+                1. <code>colors.js</code> 파일에 Night & Day 함수들 저장<br>
+                2. HTML에서 <code>&lt;script src="colors.js"&gt;&lt;/script&gt;</code>로 연결<br>
+                3. 버튼 클릭 시 외부 파일의 함수 실행
+            </div>
+            
+            <script>
+                // 이 코드는 실제로는 colors.js 파일에 있어야 함
+                var DemoBody = {
+                    setColor: function(color) {
+                        document.getElementById('demo-content').style.color = color;
+                    },
+                    setBackgroundColor: function(color) {
+                        document.getElementById('demo-content').style.backgroundColor = color;
+                    }
+                }
+                
+                var DemoLinks = {
+                    setColor: function(color) {
+                        document.getElementById('demo-link').style.color = color;
+                    }
+                }
+                
+                function demoNightDayHandler(self) {
+                    if(self.value === 'night') {
+                        DemoBody.setBackgroundColor('black');
+                        DemoBody.setColor('white');
+                        DemoLinks.setColor('powderblue');
+                        self.value = 'day';
+                        self.innerHTML = 'day';
+                    } else {
+                        DemoBody.setBackgroundColor('white');
+                        DemoBody.setColor('black');
+                        DemoLinks.setColor('blue');
+                        self.value = 'night';
+                        self.innerHTML = 'night';
+                    }
+                }
+            </script>
+        </div>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">7. 파일 분리의 실무 적용</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">7.1 기능별 파일 분리 전략</h3>
+        <div style="margin-left: 40px;">
+            <ul>
+                <li><strong>colors.js</strong>: 테마 관련 기능 (Night & Day 모드)</li>
+                <li><strong>navigation.js</strong>: 메뉴와 네비게이션 기능</li>
+                <li><strong>utils.js</strong>: 자주 사용하는 유틸리티 함수들</li>
+                <li><strong>validation.js</strong>: 폼 검증 기능</li>
+                <li><strong>animation.js</strong>: 애니메이션과 시각 효과</li>
+            </ul>
+        </div>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">7.2 파일 로드 순서 주의사항</h3>
+        <div style="margin-left: 40px;">
+            <p>JavaScript 파일들은 위에서 아래 순서대로 로드되므로 의존 관계를 고려해야 합니다:</p>
+            
+            <div class="code-section">
+<span class="comment">&lt;!-- 올바른 순서 --&gt;</span>
+<span class="keyword">&lt;script</span> <span class="string">src="utils.js"</span><span class="keyword">&gt;&lt;/script&gt;</span>     <span class="comment">&lt;!-- 기본 함수들 먼저 --&gt;</span>
+<span class="keyword">&lt;script</span> <span class="string">src="colors.js"</span><span class="keyword">&gt;&lt;/script&gt;</span>    <span class="comment">&lt;!-- utils.js의 함수를 사용할 수 있음 --&gt;</span>
+<span class="keyword">&lt;script</span> <span class="string">src="main.js"</span><span class="keyword">&gt;&lt;/script&gt;</span>      <span class="comment">&lt;!-- 앞의 두 파일을 모두 사용할 수 있음 --&gt;</span>
+            </div>
+        </div>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">8. 파일 분리의 추가 이점</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">8.1 캐싱 효과</h3>
+        <div style="margin-left: 40px;">
+            <p>외부 JavaScript 파일은 브라우저에 캐시되어 다음 방문 시 더 빠르게 로드됩니다.</p>
+        </div>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">8.2 팀 협업</h3>
+        <div style="margin-left: 40px;">
+            <p>각 팀원이 담당 기능의 JavaScript 파일을 독립적으로 개발할 수 있습니다.</p>
+        </div>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">8.3 테스트와 디버깅</h3>
+        <div style="margin-left: 40px;">
+            <p>기능별로 분리된 파일은 개별적으로 테스트하고 디버깅하기 쉽습니다.</p>
+        </div>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">9. 다음 단계 예고</h2>
+        <p style="margin-left: 20px;">파일 분리 방법을 익혔다면, 다음 강의에서는 <strong>라이브러리와 프레임워크</strong>에 대해 알아보겠습니다. 다른 개발자들이 만든 유용한 코드를 가져다 사용하는 방법을 배워보겠습니다.</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">10. 핵심 가치</h2>
+        <p style="margin-left: 20px;"><strong>"파일 분리는 코드의 재사용성과 유지보수성을 크게 향상시키는 기본적이지만 강력한 기법이다"</strong></p>
+        
+        <p style="margin-left: 40px;">하나의 거대한 파일에서 역할별로 분리된 여러 파일로 발전하여, 체계적이고 확장 가능한 웹 애플리케이션의 기초를 다지게 되었습니다!</p>
+    </main>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson25.html">← 이전 강의</a> | 
+        <a href="JS_lesson27.html">다음 강의 →</a>
+    </nav>
+    
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 26강: 파일로 쪼개기</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+</body>
+</html>

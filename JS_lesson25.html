@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>25강: 객체의 활용 - 생활코딩 JavaScript</title>
+</head>
+<body>
+    <h1>25강: 객체의 활용</h1>
+    
+    <!-- YouTube 영상 링크 박스 -->
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>📺 강의 영상:</strong> 
+        <a href="https://youtu.be/IOuePUzLdnQ?si=tpOLFFNUIGL6H4wg" target="_blank">
+            생활코딩 - 25강: 객체의 활용 (새 탭에서 열기)
+        </a>
+    </div>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson24.html">← 이전 강의</a> | 
+        <a href="JS_lesson26.html">다음 강의 →</a>
+    </nav>
+    
+    <main>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">1. 객체의 활용 개요</h2>
+        <p style="margin-left: 20px;">23강과 24강에서 배운 객체의 기본 개념과 프로퍼티/메서드를 실제 웹 개발에 활용하는 방법을 배웁니다. 특히 기존에 만들었던 Night & Day 모드 기능을 객체를 사용해서 다시 정리해보겠습니다.</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">2. 기존 코드의 문제점</h2>
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.1 분산된 함수들</h3>
+        <p style="margin-left: 40px;">이전에 만든 Night & Day 모드에서는 각각의 기능이 개별 함수로 흩어져 있었습니다.</p>
+        
+        <p style="margin-left: 40px;">
+            <input type="button" value="기존 방식 보기" onclick="
+                alert('기존에는 이런 식으로 함수들이 분산되어 있었습니다:' + String.fromCharCode(10) + String.fromCharCode(10) + 
+                      'function bodySetColor(color) { ... }' + String.fromCharCode(10) + 
+                      'function bodySetBackgroundColor(color) { ... }' + String.fromCharCode(10) + 
+                      'function linkSetColor(color) { ... }' + String.fromCharCode(10) + String.fromCharCode(10) + 
+                      '관련된 기능들이 제각각 떨어져 있어서 관리가 어려웠습니다.');
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">3. 객체로 정리하기</h2>
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.1 Body 관련 기능 묶기</h3>
+        <p style="margin-left: 40px;">body 태그와 관련된 모든 기능을 Body라는 객체로 묶어보겠습니다.</p>
+        
+        <p style="margin-left: 40px;">
+            <input type="button" value="Body 객체 정의" onclick="
+                window.Body = {
+                    setColor: function(color) {
+                        document.querySelector('body').style.color = color;
+                    },
+                    setBackgroundColor: function(color) {
+                        document.querySelector('body').style.backgroundColor = color;
+                    }
+                };
+                alert('Body 객체가 정의되었습니다!' + String.fromCharCode(10) + String.fromCharCode(10) + 
+                      'Body.setColor(색깔) - 글자색 변경' + String.fromCharCode(10) + 
+                      'Body.setBackgroundColor(색깔) - 배경색 변경');
+            ">
+        </p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.2 Links 관련 기능 묶기</h3>
+        <p style="margin-left: 40px;">링크들과 관련된 기능을 Links라는 객체로 묶어보겠습니다.</p>
+        
+        <p style="margin-left: 40px;">
+            <input type="button" value="Links 객체 정의" onclick="
+                window.Links = {
+                    setColor: function(color) {
+                        var alist = document.querySelectorAll('a');
+                        var i = 0;
+                        while(i < alist.length) {
+                            alist[i].style.color = color;
+                            i = i + 1;
+                        }
+                    }
+                };
+                alert('Links 객체가 정의되었습니다!' + String.fromCharCode(10) + String.fromCharCode(10) + 
+                      'Links.setColor(색깔) - 모든 링크 색상 변경');
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">4. 객체 활용 실습</h2>
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.1 Night 모드 적용</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="Night 모드" onclick="
+                if(window.Body && window.Links) {
+                    Body.setBackgroundColor('black');
+                    Body.setColor('white');
+                    Links.setColor('yellow');
+                    alert('Night 모드가 적용되었습니다!');
+                } else {
+                    alert('먼저 Body와 Links 객체를 정의해주세요.');
+                }
+            ">
+        </p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.2 Day 모드 적용</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="Day 모드" onclick="
+                if(window.Body && window.Links) {
+                    Body.setBackgroundColor('white');
+                    Body.setColor('black');
+                    Links.setColor('blue');
+                    alert('Day 모드가 적용되었습니다!');
+                } else {
+                    alert('먼저 Body와 Links 객체를 정의해주세요.');
+                }
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">5. 객체 활용의 장점</h2>
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.1 네임스페이스 효과</h3>
+        <p style="margin-left: 40px;">객체를 사용하면 setColor라는 같은 이름의 메서드가 Body.setColor와 Links.setColor로 구분됩니다. 이름 충돌을 방지할 수 있습니다.</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.2 코드 정리</h3>
+        <p style="margin-left: 40px;">관련된 기능들이 하나의 객체로 묶여있어서 코드를 찾고 관리하기가 쉬워집니다.</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.3 재사용성</h3>
+        <p style="margin-left: 40px;">한 번 만든 객체는 다른 프로젝트에서도 그대로 가져다 쓸 수 있습니다.</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">6. 더 발전된 활용</h2>
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">6.1 함수도 객체로 정리</h3>
+        <p style="margin-left: 40px;">Night & Day 모드 전환 함수도 객체로 만들어보겠습니다.</p>
+        
+        <p style="margin-left: 40px;">
+            <input type="button" value="NightDay 객체 만들기" onclick="
+                window.NightDay = {
+                    nightMode: function() {
+                        Body.setBackgroundColor('black');
+                        Body.setColor('white');
+                        Links.setColor('yellow');
+                    },
+                    dayMode: function() {
+                        Body.setBackgroundColor('white');
+                        Body.setColor('black');  
+                        Links.setColor('blue');
+                    }
+                };
+                alert('NightDay 객체가 생성되었습니다!' + String.fromCharCode(10) + String.fromCharCode(10) + 
+                      'NightDay.nightMode() - 밤 모드' + String.fromCharCode(10) + 
+                      'NightDay.dayMode() - 낮 모드');
+            ">
+        </p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">6.2 통합 객체 테스트</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="통합 Night 모드" onclick="
+                if(window.NightDay) {
+                    NightDay.nightMode();
+                    alert('통합 객체로 Night 모드 적용 완료!');
+                } else {
+                    alert('먼저 NightDay 객체를 만들어주세요.');
+                }
+            ">
+            
+            <input type="button" value="통합 Day 모드" onclick="
+                if(window.NightDay) {
+                    NightDay.dayMode();
+                    alert('통합 객체로 Day 모드 적용 완료!');
+                } else {
+                    alert('먼저 NightDay 객체를 만들어주세요.');
+                }
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">7. 실제 코드 확인</h2>
+        <p style="margin-left: 20px;">개발자 도구 Console에서 다음과 같이 객체들이 정의되어 있는지 확인해보세요:</p>
+        
+        <p style="margin-left: 40px;">
+            <input type="button" value="객체 확인하기" onclick="
+                console.log('=== 정의된 객체들 ===');
+                console.log('Body 객체:', window.Body);
+                console.log('Links 객체:', window.Links);
+                console.log('NightDay 객체:', window.NightDay);
+                alert('개발자 도구 Console을 열어서 객체들을 확인해보세요!' + String.fromCharCode(10) + 
+                      'F12 키를 누르고 Console 탭을 클릭하면 됩니다.');
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">8. 객체 활용 원칙</h2>
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">8.1 관련 기능만 묶기</h3>
+        <p style="margin-left: 40px;">하나의 객체에는 서로 관련된 기능들만 포함시킵니다.</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">8.2 의미있는 이름 사용</h3>
+        <p style="margin-left: 40px;">Body, Links, NightDay처럼 객체의 역할을 명확히 나타내는 이름을 사용합니다.</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">8.3 점진적 확장</h3>
+        <p style="margin-left: 40px;">처음에는 간단하게 시작해서 필요에 따라 객체에 새로운 메서드를 추가해 나갑니다.</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">9. 실무에서의 활용</h2>
+        <p style="margin-left: 20px;">실제 웹 개발에서는 이런 식으로 기능별로 객체를 만들어서 코드를 체계적으로 관리합니다. 프로젝트가 커질수록 객체를 활용한 코드 정리의 중요성이 더욱 커집니다.</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">10. 다음 단계 예고</h2>
+        <p style="margin-left: 20px;">객체의 활용을 마스터했다면, 다음 강의에서는 <strong>파일로 쪼개기</strong>를 통해 코드를 여러 파일로 분리하여 더욱 체계적으로 관리하는 방법을 배우게 됩니다.</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">11. 핵심 가치</h2>
+        <p style="margin-left: 20px;"><strong>"객체는 관련된 기능들을 하나로 묶어 코드를 체계적으로 정리하고 관리를 쉽게 만드는 강력한 도구다"</strong></p>
+        
+        <p style="margin-left: 40px;">이제 흩어진 함수들을 의미있는 단위로 묶어서 관리할 수 있게 되었습니다. 이는 더 큰 프로젝트로 나아가는 중요한 첫걸음입니다!</p>
+    </main>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson24.html">← 이전 강의</a> | 
+        <a href="JS_lesson26.html">다음 강의 →</a>
+    </nav>
+    
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 25강: 객체의 활용</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+</body>
+</html>

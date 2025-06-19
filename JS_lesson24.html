@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>24강: 객체 - 프로퍼티와 메서드 - 생활코딩 JavaScript</title>
+</head>
+<body>
+    <h1>24강: 객체 - 프로퍼티와 메서드</h1>
+    
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>📺 강의 영상:</strong> 
+        <a href="https://youtu.be/WpTdoEvmFxw?si=gRf9waAqB-CMY9pN" target="_blank">
+            생활코딩 - 객체 - 프로퍼티와 메서드 (새 탭에서 열기)
+        </a>
+    </div>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson23.html">← 이전 강의</a> | 
+        <a href="JS_lesson25.html">다음 강의 →</a>
+    </nav>
+    
+    <main>
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">1. 프로퍼티와 메서드란?</h2>
+        <ul style="margin-left: 40px;">
+            <li><strong>프로퍼티(Property)</strong>: 객체에 저장된 데이터(변수)</li>
+            <li><strong>메서드(Method)</strong>: 객체에 저장된 함수</li>
+            <li>같은 것이지만 <strong>객체에 속했을 때 부르는 이름</strong>이 다름</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">2. 기본 개념 정리</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.1 독립적일 때 vs 객체에 속할 때</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>독립된 데이터</strong> → 변수(Variable)</li>
+            <li><strong>객체 안의 데이터</strong> → 프로퍼티(Property)</li>
+            <li><strong>독립된 함수</strong> → 함수(Function)</li>
+            <li><strong>객체 안의 함수</strong> → 메서드(Method)</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">2.2 실제 예시</h3>
+        <p style="margin-left: 40px;">// 독립적인 변수와 함수</p>
+        <p style="margin-left: 40px;">var name = "김철수";</p>
+        <p style="margin-left: 40px;">function greeting() {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;alert("안녕하세요!");</p>
+        <p style="margin-left: 40px;">}</p>
+        
+        <p style="margin-left: 40px;">// 객체의 프로퍼티와 메서드</p>
+        <p style="margin-left: 40px;">var person = {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;name: "김철수",&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 프로퍼티</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;greeting: function() {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 메서드</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert("안녕하세요!");</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        <p style="margin-left: 40px;">};</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">3. 메서드 정의와 호출</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.1 메서드 정의 문법</h3>
+        <p style="margin-left: 40px;">var myObject = {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;methodName: function() {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 실행할 코드</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        <p style="margin-left: 40px;">};</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.2 메서드 호출 문법</h3>
+        <p style="margin-left: 40px;">myObject.methodName();&nbsp;&nbsp;// 점 표기법으로 호출</p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">3.3 기본 예제</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="간단한 메서드 체험" onclick="
+                var person = {
+                    name: '홍길동',
+                    age: 25,
+                    introduce: function() {
+                        alert('안녕하세요! 제 이름은 ' + this.name + '이고, 나이는 ' + this.age + '살입니다.');
+                    }
+                };
+                
+                person.introduce();
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">4. this 키워드 이해</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.1 this란?</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>this</strong>: 메서드가 속한 객체를 가리키는 키워드</li>
+            <li><strong>자기참조</strong>: 객체가 자기 자신을 참조하는 방법</li>
+            <li><strong>동적 결정</strong>: 호출되는 순간에 어떤 객체인지 결정</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.2 this 사용 예제</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="this 키워드 이해하기" onclick="
+                var car = {
+                    brand: 'Hyundai',
+                    model: 'Ioniq5',
+                    color: 'white',
+                    startEngine: function() {
+                        alert(this.brand + ' ' + this.model + '(' + this.color + ')의 엔진이 시동되었습니다!');
+                    },
+                    getInfo: function() {
+                        return this.brand + ' ' + this.model + ' (' + this.color + ')';
+                    }
+                };
+                
+                car.startEngine();
+                alert('차량 정보: ' + car.getInfo());
+            ">
+        </p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">4.3 this의 핵심 이유</h3>
+        <p style="margin-left: 40px;">var student1 = {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;name: "김학생",</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;study: function() {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert(this.name + "이 공부합니다");</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        <p style="margin-left: 40px;">};</p>
+        
+        <p style="margin-left: 40px;">var student2 = {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;name: "이학생",</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;study: function() {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert(this.name + "이 공부합니다");</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        <p style="margin-left: 40px;">};</p>
+        
+        <p style="margin-left: 40px;">// this 덕분에 같은 메서드가 다른 객체에서 다르게 동작</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">5. 실용적인 객체 구조</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.1 완전한 객체 예제</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="계산기 객체" onclick="
+                var calculator = {
+                    // 프로퍼티
+                    result: 0,
+                    
+                    // 메서드들
+                    add: function(num) {
+                        this.result += num;
+                        return this;
+                    },
+                    
+                    subtract: function(num) {
+                        this.result -= num;
+                        return this;
+                    },
+                    
+                    multiply: function(num) {
+                        this.result *= num;
+                        return this;
+                    },
+                    
+                    getResult: function() {
+                        return this.result;
+                    },
+                    
+                    clear: function() {
+                        this.result = 0;
+                        return this;
+                    }
+                };
+                
+                calculator.clear().add(10).multiply(3).subtract(5);
+                alert('계산 결과: ' + calculator.getResult());
+            ">
+        </p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">5.2 Night & Day 모드 객체</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="테마 관리 객체" onclick="
+                var themeManager = {
+                    // 프로퍼티
+                    currentTheme: 'day',
+                    
+                    // 메서드들
+                    setNightMode: function() {
+                        document.querySelector('body').style.backgroundColor = 'black';
+                        document.querySelector('body').style.color = 'white';
+                        this.currentTheme = 'night';
+                        alert('Night 모드로 변경되었습니다.');
+                    },
+                    
+                    setDayMode: function() {
+                        document.querySelector('body').style.backgroundColor = 'white';
+                        document.querySelector('body').style.color = 'black';
+                        this.currentTheme = 'day';
+                        alert('Day 모드로 변경되었습니다.');
+                    },
+                    
+                    toggle: function() {
+                        if (this.currentTheme === 'day') {
+                            this.setNightMode();
+                        } else {
+                            this.setDayMode();
+                        }
+                    },
+                    
+                    getCurrentTheme: function() {
+                        return this.currentTheme;
+                    }
+                };
+                
+                themeManager.toggle();
+            ">
+            
+            <input type="button" value="테마 복원" onclick="
+                document.querySelector('body').style.backgroundColor = 'white';
+                document.querySelector('body').style.color = 'black';
+                alert('원래 테마로 복원되었습니다.');
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">6. 메서드 체이닝</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">6.1 메서드 체이닝이란?</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>메서드 연결</strong>: 여러 메서드를 연속으로 호출</li>
+            <li><strong>return this</strong>: 메서드에서 객체 자신을 반환</li>
+            <li><strong>가독성</strong>: 연속적인 작업을 한 줄로 표현</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">6.2 체이닝 예제</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="메서드 체이닝 체험" onclick="
+                var counter = {
+                    value: 0,
+                    
+                    increment: function() {
+                        this.value++;
+                        return this;  // 자기 자신을 반환
+                    },
+                    
+                    decrement: function() {
+                        this.value--;
+                        return this;
+                    },
+                    
+                    multiply: function(num) {
+                        this.value *= num;
+                        return this;
+                    },
+                    
+                    show: function() {
+                        alert('현재 값: ' + this.value);
+                        return this;
+                    }
+                };
+                
+                // 메서드 체이닝으로 연속 작업
+                counter.increment().increment().multiply(3).show().decrement().show();
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">7. 객체 사용의 장점</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">7.1 정리정돈</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>관련 데이터와 함수 그룹핑</strong>: 하나의 객체에 모든 관련 기능 집중</li>
+            <li><strong>네임스페이스 효과</strong>: 이름 충돌 방지</li>
+            <li><strong>구조화</strong>: 코드의 논리적 구조 명확화</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">7.2 재사용성</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>템플릿 역할</strong>: 같은 구조의 여러 객체 생성 가능</li>
+            <li><strong>모듈화</strong>: 독립적인 기능 단위로 분리</li>
+            <li><strong>확장성</strong>: 새로운 프로퍼티와 메서드 추가 용이</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">8. 실제 JavaScript 내장 객체들</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">8.1 document 객체</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="document 객체 탐험" onclick="
+                // document 객체의 프로퍼티와 메서드 사용
+                var info = 'document 객체 정보:' + String.fromCharCode(10) + String.fromCharCode(10);
+                info += '제목: ' + document.title + String.fromCharCode(10);
+                info += 'URL: ' + document.URL + String.fromCharCode(10);
+                info += '도메인: ' + document.domain + String.fromCharCode(10);
+                info += String.fromCharCode(10) + 'querySelector 메서드로 body 선택: ';
+                info += document.querySelector('body').tagName;
+                
+                alert(info);
+            ">
+        </p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">8.2 console 객체</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="console 객체 사용" onclick="
+                try {
+                    // console 객체의 다양한 메서드들
+                    console.log('일반 로그 메시지');
+                    console.warn('경고 메시지');
+                    console.error('에러 메시지');
+                    console.info('정보 메시지');
+                    
+                    // 사용자에게 console 확인 요청과 함께 실제 출력도 보여주기
+                    var consoleDemo = 'Console 객체 메서드 실행 완료!' + String.fromCharCode(10) + String.fromCharCode(10);
+                    consoleDemo += '실행된 메서드들:' + String.fromCharCode(10);
+                    consoleDemo += '• console.log() - 일반 로그' + String.fromCharCode(10);
+                    consoleDemo += '• console.warn() - 경고 메시지' + String.fromCharCode(10);
+                    consoleDemo += '• console.error() - 에러 메시지' + String.fromCharCode(10);
+                    consoleDemo += '• console.info() - 정보 메시지' + String.fromCharCode(10) + String.fromCharCode(10);
+                    consoleDemo += 'F12키를 눌러 개발자 도구의 Console 탭을 확인해보세요!';
+                    
+                    alert(consoleDemo);
+                } catch (error) {
+                    alert('Console 객체를 사용할 수 없는 환경입니다. 대부분의 모던 브라우저에서는 정상 작동합니다.');
+                }
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">9. 프로퍼티와 메서드 동적 추가</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">9.1 런타임에 추가하기</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="동적 프로퍼티/메서드 추가" onclick="
+                var emptyObject = {};
+                
+                // 프로퍼티 동적 추가
+                emptyObject.name = '동적 객체';
+                emptyObject.version = 1.0;
+                
+                // 메서드 동적 추가
+                emptyObject.sayHello = function() {
+                    return '안녕하세요! ' + this.name + ' v' + this.version + '입니다.';
+                };
+                
+                emptyObject.upgrade = function() {
+                    this.version += 0.1;
+                    return this;
+                };
+                
+                alert(emptyObject.sayHello());
+                emptyObject.upgrade();
+                alert('업그레이드 후: ' + emptyObject.sayHello());
+            ">
+        </p>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">9.2 점 표기법 vs 대괄호 표기법</h3>
+        <p style="margin-left: 40px;">
+            <input type="button" value="표기법 비교" onclick="
+                var obj = {
+                    'normal key': '일반 키',
+                    'special-key': '특수 키',
+                    dynamicMethod: function() {
+                        return '동적 메서드 호출됨';
+                    }
+                };
+                
+                var result = '표기법 비교:' + String.fromCharCode(10) + String.fromCharCode(10);
+                
+                // 점 표기법
+                result += '점 표기법: ' + obj.dynamicMethod() + String.fromCharCode(10);
+                
+                // 대괄호 표기법 
+                result += '대괄호 표기법: ' + obj['dynamicMethod']() + String.fromCharCode(10);
+                result += '특수 키: ' + obj['special-key'] + String.fromCharCode(10);
+                result += '공백 포함 키: ' + obj['normal key'];
+                
+                alert(result);
+            ">
+        </p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">10. 핵심 개념 정리</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">10.1 용어 정리</h3>
+        <ol style="margin-left: 40px;">
+            <li><strong>프로퍼티</strong>: 객체의 데이터 (키: 값)</li>
+            <li><strong>메서드</strong>: 객체의 함수 (키: function)</li>
+            <li><strong>this</strong>: 메서드 내에서 객체 자신을 참조</li>
+            <li><strong>메서드 체이닝</strong>: return this로 연속 호출</li>
+        </ol>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">10.2 문법 패턴</h3>
+        <p style="margin-left: 40px;">var 객체명 = {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;프로퍼티명: 값,</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;메서드명: function() {</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// this로 자기 참조</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return this; // 체이닝용</p>
+        <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        <p style="margin-left: 40px;">};</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">11. 실무 활용 팁</h2>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">11.1 설계 원칙</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>관련성</strong>: 서로 관련된 데이터와 기능만 하나의 객체에</li>
+            <li><strong>일관성</strong>: 비슷한 기능은 비슷한 이름으로</li>
+            <li><strong>단순성</strong>: 너무 복잡한 객체보다는 단순하고 명확하게</li>
+        </ul>
+        
+        <h3 style="font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; margin-left: 20px;">11.2 네이밍 컨벤션</h3>
+        <ul style="margin-left: 40px;">
+            <li><strong>camelCase</strong>: firstName, lastName, getUserInfo</li>
+            <li><strong>동사 + 명사</strong>: setColor, getName, calculateTotal</li>
+            <li><strong>의미 있는 이름</strong>: data1보다는 userInfo가 좋음</li>
+        </ul>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">12. 다음 단계 예고</h2>
+        <p style="margin-left: 20px;">프로퍼티와 메서드의 개념을 마스터했다면, 다음 강의에서는 <strong>객체의 실제 활용</strong>을 통해 Night & Day 모드 프로젝트에 객체를 적용해보겠습니다.</p>
+        
+        <h2 style="font-size: 1.5em; margin-top: 30px; margin-bottom: 15px;">13. 핵심 가치</h2>
+        <p style="margin-left: 20px;"><strong>"프로퍼티와 메서드는 객체를 완전한 기능 단위로 만드는 핵심 요소로, 데이터와 기능을 하나로 묶어 체계적인 프로그래밍을 가능하게 한다"</strong></p>
+        
+        <p style="margin-left: 40px;">이제 단순한 데이터 저장소가 아닌, 스스로 행동하고 상태를 관리하는 능동적인 객체를 만들 수 있게 되었습니다!</p>
+    </main>
+    
+    <nav style="margin: 20px 0; padding: 10px; background-color: #e9ecef; border-radius: 5px;">
+        <a href="index.html">← 목차로 돌아가기</a> | 
+        <a href="JS_lesson23.html">← 이전 강의</a> | 
+        <a href="JS_lesson25.html">다음 강의 →</a>
+    </nav>
+    
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
+        <p>📚 <strong>생활코딩 WEB2 JavaScript</strong> - 24강: 객체 - 프로퍼티와 메서드</p>
+        <p>
+            <a href="index.html">전체 목차</a> | 
+            <a href="https://opentutorials.org/course/3085" target="_blank">생활코딩 원본 강의</a>
+        </p>
+    </footer>
+</body>
+</html>
